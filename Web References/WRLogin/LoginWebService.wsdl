@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CreateAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="account" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="failureDateTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userTel" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPermission" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="stateCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateAccountResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Result">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExtData" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FailDescription" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FailNum" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsOK" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Num" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StateCodeID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SucceedDescription" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SucceedNum" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="account" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangePassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="account" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="oldPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="newPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangePasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangePasswordResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateOnLineStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="account" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateOnLineStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateOnLineStatusResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EditeAccountInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="account" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="failureDateTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userTel" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPermission" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="stateCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EditeAccountInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EditeAccountInfoResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInfoByAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="account" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInfoByAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInfoByAccountResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="account" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteAccountResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Result" nillable="true" type="tns:Result" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateAccount" />
+  </wsdl:message>
+  <wsdl:message name="CreateAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangePasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangePassword" />
+  </wsdl:message>
+  <wsdl:message name="ChangePasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateOnLineStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateOnLineStatus" />
+  </wsdl:message>
+  <wsdl:message name="UpdateOnLineStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateOnLineStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="EditeAccountInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:EditeAccountInfo" />
+  </wsdl:message>
+  <wsdl:message name="EditeAccountInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:EditeAccountInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInfoByAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInfoByAccount" />
+  </wsdl:message>
+  <wsdl:message name="GetInfoByAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInfoByAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteAccount" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateAccountHttpGetIn">
+    <wsdl:part name="account" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="userName" type="s:string" />
+    <wsdl:part name="failureDateTime" type="s:string" />
+    <wsdl:part name="userTel" type="s:string" />
+    <wsdl:part name="userPermission" type="s:string" />
+    <wsdl:part name="stateCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateAccountHttpGetOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="LoginHttpGetIn">
+    <wsdl:part name="account" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LoginHttpGetOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="ChangePasswordHttpGetIn">
+    <wsdl:part name="account" type="s:string" />
+    <wsdl:part name="oldPassword" type="s:string" />
+    <wsdl:part name="newPassword" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChangePasswordHttpGetOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="UpdateOnLineStatusHttpGetIn">
+    <wsdl:part name="account" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateOnLineStatusHttpGetOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="EditeAccountInfoHttpGetIn">
+    <wsdl:part name="account" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="userName" type="s:string" />
+    <wsdl:part name="failureDateTime" type="s:string" />
+    <wsdl:part name="userTel" type="s:string" />
+    <wsdl:part name="userPermission" type="s:string" />
+    <wsdl:part name="stateCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EditeAccountInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="GetInfoByAccountHttpGetIn">
+    <wsdl:part name="account" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetInfoByAccountHttpGetOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAccountHttpGetIn">
+    <wsdl:part name="account" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAccountHttpGetOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="CreateAccountHttpPostIn">
+    <wsdl:part name="account" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="userName" type="s:string" />
+    <wsdl:part name="failureDateTime" type="s:string" />
+    <wsdl:part name="userTel" type="s:string" />
+    <wsdl:part name="userPermission" type="s:string" />
+    <wsdl:part name="stateCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateAccountHttpPostOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="LoginHttpPostIn">
+    <wsdl:part name="account" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LoginHttpPostOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="ChangePasswordHttpPostIn">
+    <wsdl:part name="account" type="s:string" />
+    <wsdl:part name="oldPassword" type="s:string" />
+    <wsdl:part name="newPassword" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChangePasswordHttpPostOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="UpdateOnLineStatusHttpPostIn">
+    <wsdl:part name="account" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateOnLineStatusHttpPostOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="EditeAccountInfoHttpPostIn">
+    <wsdl:part name="account" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="userName" type="s:string" />
+    <wsdl:part name="failureDateTime" type="s:string" />
+    <wsdl:part name="userTel" type="s:string" />
+    <wsdl:part name="userPermission" type="s:string" />
+    <wsdl:part name="stateCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EditeAccountInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="GetInfoByAccountHttpPostIn">
+    <wsdl:part name="account" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetInfoByAccountHttpPostOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAccountHttpPostIn">
+    <wsdl:part name="account" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAccountHttpPostOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:portType name="LoginWebServiceSoap">
+    <wsdl:operation name="CreateAccount">
+      <wsdl:input message="tns:CreateAccountSoapIn" />
+      <wsdl:output message="tns:CreateAccountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <wsdl:input message="tns:ChangePasswordSoapIn" />
+      <wsdl:output message="tns:ChangePasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOnLineStatus">
+      <wsdl:input message="tns:UpdateOnLineStatusSoapIn" />
+      <wsdl:output message="tns:UpdateOnLineStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EditeAccountInfo">
+      <wsdl:input message="tns:EditeAccountInfoSoapIn" />
+      <wsdl:output message="tns:EditeAccountInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInfoByAccount">
+      <wsdl:input message="tns:GetInfoByAccountSoapIn" />
+      <wsdl:output message="tns:GetInfoByAccountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAccount">
+      <wsdl:input message="tns:DeleteAccountSoapIn" />
+      <wsdl:output message="tns:DeleteAccountSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="LoginWebServiceHttpGet">
+    <wsdl:operation name="CreateAccount">
+      <wsdl:input message="tns:CreateAccountHttpGetIn" />
+      <wsdl:output message="tns:CreateAccountHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginHttpGetIn" />
+      <wsdl:output message="tns:LoginHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <wsdl:input message="tns:ChangePasswordHttpGetIn" />
+      <wsdl:output message="tns:ChangePasswordHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOnLineStatus">
+      <wsdl:input message="tns:UpdateOnLineStatusHttpGetIn" />
+      <wsdl:output message="tns:UpdateOnLineStatusHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EditeAccountInfo">
+      <wsdl:input message="tns:EditeAccountInfoHttpGetIn" />
+      <wsdl:output message="tns:EditeAccountInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInfoByAccount">
+      <wsdl:input message="tns:GetInfoByAccountHttpGetIn" />
+      <wsdl:output message="tns:GetInfoByAccountHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAccount">
+      <wsdl:input message="tns:DeleteAccountHttpGetIn" />
+      <wsdl:output message="tns:DeleteAccountHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="LoginWebServiceHttpPost">
+    <wsdl:operation name="CreateAccount">
+      <wsdl:input message="tns:CreateAccountHttpPostIn" />
+      <wsdl:output message="tns:CreateAccountHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginHttpPostIn" />
+      <wsdl:output message="tns:LoginHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <wsdl:input message="tns:ChangePasswordHttpPostIn" />
+      <wsdl:output message="tns:ChangePasswordHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOnLineStatus">
+      <wsdl:input message="tns:UpdateOnLineStatusHttpPostIn" />
+      <wsdl:output message="tns:UpdateOnLineStatusHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EditeAccountInfo">
+      <wsdl:input message="tns:EditeAccountInfoHttpPostIn" />
+      <wsdl:output message="tns:EditeAccountInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInfoByAccount">
+      <wsdl:input message="tns:GetInfoByAccountHttpPostIn" />
+      <wsdl:output message="tns:GetInfoByAccountHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAccount">
+      <wsdl:input message="tns:DeleteAccountHttpPostIn" />
+      <wsdl:output message="tns:DeleteAccountHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LoginWebServiceSoap" type="tns:LoginWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateAccount">
+      <soap:operation soapAction="http://tempuri.org/CreateAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <soap:operation soapAction="http://tempuri.org/ChangePassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOnLineStatus">
+      <soap:operation soapAction="http://tempuri.org/UpdateOnLineStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditeAccountInfo">
+      <soap:operation soapAction="http://tempuri.org/EditeAccountInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInfoByAccount">
+      <soap:operation soapAction="http://tempuri.org/GetInfoByAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAccount">
+      <soap:operation soapAction="http://tempuri.org/DeleteAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LoginWebServiceSoap12" type="tns:LoginWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateAccount">
+      <soap12:operation soapAction="http://tempuri.org/CreateAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://tempuri.org/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <soap12:operation soapAction="http://tempuri.org/ChangePassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOnLineStatus">
+      <soap12:operation soapAction="http://tempuri.org/UpdateOnLineStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditeAccountInfo">
+      <soap12:operation soapAction="http://tempuri.org/EditeAccountInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInfoByAccount">
+      <soap12:operation soapAction="http://tempuri.org/GetInfoByAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAccount">
+      <soap12:operation soapAction="http://tempuri.org/DeleteAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LoginWebServiceHttpGet" type="tns:LoginWebServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="CreateAccount">
+      <http:operation location="/CreateAccount" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <http:operation location="/Login" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <http:operation location="/ChangePassword" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOnLineStatus">
+      <http:operation location="/UpdateOnLineStatus" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditeAccountInfo">
+      <http:operation location="/EditeAccountInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInfoByAccount">
+      <http:operation location="/GetInfoByAccount" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAccount">
+      <http:operation location="/DeleteAccount" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LoginWebServiceHttpPost" type="tns:LoginWebServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="CreateAccount">
+      <http:operation location="/CreateAccount" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <http:operation location="/Login" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <http:operation location="/ChangePassword" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOnLineStatus">
+      <http:operation location="/UpdateOnLineStatus" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditeAccountInfo">
+      <http:operation location="/EditeAccountInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInfoByAccount">
+      <http:operation location="/GetInfoByAccount" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAccount">
+      <http:operation location="/DeleteAccount" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LoginWebService">
+    <wsdl:port name="LoginWebServiceSoap" binding="tns:LoginWebServiceSoap">
+      <soap:address location="http://120.79.137.8/DownLoad/BLL/Login/LoginWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LoginWebServiceSoap12" binding="tns:LoginWebServiceSoap12">
+      <soap12:address location="http://120.79.137.8/DownLoad/BLL/Login/LoginWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LoginWebServiceHttpGet" binding="tns:LoginWebServiceHttpGet">
+      <http:address location="http://120.79.137.8/DownLoad/BLL/Login/LoginWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LoginWebServiceHttpPost" binding="tns:LoginWebServiceHttpPost">
+      <http:address location="http://120.79.137.8/DownLoad/BLL/Login/LoginWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

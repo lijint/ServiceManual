@@ -1,0 +1,2 @@
+E:\MyProject\维修系统\code\ServiceManual\bin\Debug\ServiceManual.exe.config
+E:\MyProject\维修系统\code\ServiceManual\obj\Debug\ServiceManual.csproj.ResolveComReference.cache
