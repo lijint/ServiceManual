@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="PreCreate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="account" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="renewalWay" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PreCreateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PreCreateResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Result">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExtData" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FailDescription" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FailNum" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsOK" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Num" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StateCodeID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SucceedDescription" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SucceedNum" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="QueryByOrderNo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="account" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="orderNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryByOrderNoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryByOrderNoResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelPreOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="account" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="orderNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelPreOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CancelPreOrderResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRenewalPriceInfo">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetRenewalPriceInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRenewalPriceInfoResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetRenewalInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="priceF" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="renewalTimeF" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="priceS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="renewalTimeS" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetRenewalInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetRenewalInfoResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNetConfigInfo">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetNetConfigInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetNetConfigInfoResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetNetConfigInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="josnValue" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetNetConfigInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetNetConfigInfoResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Result" nillable="true" type="tns:Result" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="PreCreateSoapIn">
+    <wsdl:part name="parameters" element="tns:PreCreate" />
+  </wsdl:message>
+  <wsdl:message name="PreCreateSoapOut">
+    <wsdl:part name="parameters" element="tns:PreCreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryByOrderNoSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryByOrderNo" />
+  </wsdl:message>
+  <wsdl:message name="QueryByOrderNoSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryByOrderNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelPreOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelPreOrder" />
+  </wsdl:message>
+  <wsdl:message name="CancelPreOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelPreOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRenewalPriceInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRenewalPriceInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetRenewalPriceInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRenewalPriceInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetRenewalInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:SetRenewalInfo" />
+  </wsdl:message>
+  <wsdl:message name="SetRenewalInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:SetRenewalInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetNetConfigInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetNetConfigInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetNetConfigInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetNetConfigInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetNetConfigInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:SetNetConfigInfo" />
+  </wsdl:message>
+  <wsdl:message name="SetNetConfigInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:SetNetConfigInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="PreCreateHttpGetIn">
+    <wsdl:part name="account" type="s:string" />
+    <wsdl:part name="renewalWay" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PreCreateHttpGetOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="QueryByOrderNoHttpGetIn">
+    <wsdl:part name="account" type="s:string" />
+    <wsdl:part name="orderNo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="QueryByOrderNoHttpGetOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="CancelPreOrderHttpGetIn">
+    <wsdl:part name="account" type="s:string" />
+    <wsdl:part name="orderNo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CancelPreOrderHttpGetOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="GetRenewalPriceInfoHttpGetIn" />
+  <wsdl:message name="GetRenewalPriceInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="SetRenewalInfoHttpGetIn">
+    <wsdl:part name="priceF" type="s:string" />
+    <wsdl:part name="renewalTimeF" type="s:string" />
+    <wsdl:part name="priceS" type="s:string" />
+    <wsdl:part name="renewalTimeS" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SetRenewalInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="GetNetConfigInfoHttpGetIn" />
+  <wsdl:message name="GetNetConfigInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="SetNetConfigInfoHttpGetIn">
+    <wsdl:part name="josnValue" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SetNetConfigInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="PreCreateHttpPostIn">
+    <wsdl:part name="account" type="s:string" />
+    <wsdl:part name="renewalWay" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PreCreateHttpPostOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="QueryByOrderNoHttpPostIn">
+    <wsdl:part name="account" type="s:string" />
+    <wsdl:part name="orderNo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="QueryByOrderNoHttpPostOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="CancelPreOrderHttpPostIn">
+    <wsdl:part name="account" type="s:string" />
+    <wsdl:part name="orderNo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CancelPreOrderHttpPostOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="GetRenewalPriceInfoHttpPostIn" />
+  <wsdl:message name="GetRenewalPriceInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="SetRenewalInfoHttpPostIn">
+    <wsdl:part name="priceF" type="s:string" />
+    <wsdl:part name="renewalTimeF" type="s:string" />
+    <wsdl:part name="priceS" type="s:string" />
+    <wsdl:part name="renewalTimeS" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SetRenewalInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="GetNetConfigInfoHttpPostIn" />
+  <wsdl:message name="GetNetConfigInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:message name="SetNetConfigInfoHttpPostIn">
+    <wsdl:part name="josnValue" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SetNetConfigInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:Result" />
+  </wsdl:message>
+  <wsdl:portType name="AliPayWebServiceSoap">
+    <wsdl:operation name="PreCreate">
+      <wsdl:input message="tns:PreCreateSoapIn" />
+      <wsdl:output message="tns:PreCreateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryByOrderNo">
+      <wsdl:input message="tns:QueryByOrderNoSoapIn" />
+      <wsdl:output message="tns:QueryByOrderNoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelPreOrder">
+      <wsdl:input message="tns:CancelPreOrderSoapIn" />
+      <wsdl:output message="tns:CancelPreOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRenewalPriceInfo">
+      <wsdl:input message="tns:GetRenewalPriceInfoSoapIn" />
+      <wsdl:output message="tns:GetRenewalPriceInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRenewalInfo">
+      <wsdl:input message="tns:SetRenewalInfoSoapIn" />
+      <wsdl:output message="tns:SetRenewalInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNetConfigInfo">
+      <wsdl:input message="tns:GetNetConfigInfoSoapIn" />
+      <wsdl:output message="tns:GetNetConfigInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetNetConfigInfo">
+      <wsdl:input message="tns:SetNetConfigInfoSoapIn" />
+      <wsdl:output message="tns:SetNetConfigInfoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AliPayWebServiceHttpGet">
+    <wsdl:operation name="PreCreate">
+      <wsdl:input message="tns:PreCreateHttpGetIn" />
+      <wsdl:output message="tns:PreCreateHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryByOrderNo">
+      <wsdl:input message="tns:QueryByOrderNoHttpGetIn" />
+      <wsdl:output message="tns:QueryByOrderNoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelPreOrder">
+      <wsdl:input message="tns:CancelPreOrderHttpGetIn" />
+      <wsdl:output message="tns:CancelPreOrderHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRenewalPriceInfo">
+      <wsdl:input message="tns:GetRenewalPriceInfoHttpGetIn" />
+      <wsdl:output message="tns:GetRenewalPriceInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRenewalInfo">
+      <wsdl:input message="tns:SetRenewalInfoHttpGetIn" />
+      <wsdl:output message="tns:SetRenewalInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNetConfigInfo">
+      <wsdl:input message="tns:GetNetConfigInfoHttpGetIn" />
+      <wsdl:output message="tns:GetNetConfigInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetNetConfigInfo">
+      <wsdl:input message="tns:SetNetConfigInfoHttpGetIn" />
+      <wsdl:output message="tns:SetNetConfigInfoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AliPayWebServiceHttpPost">
+    <wsdl:operation name="PreCreate">
+      <wsdl:input message="tns:PreCreateHttpPostIn" />
+      <wsdl:output message="tns:PreCreateHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryByOrderNo">
+      <wsdl:input message="tns:QueryByOrderNoHttpPostIn" />
+      <wsdl:output message="tns:QueryByOrderNoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelPreOrder">
+      <wsdl:input message="tns:CancelPreOrderHttpPostIn" />
+      <wsdl:output message="tns:CancelPreOrderHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRenewalPriceInfo">
+      <wsdl:input message="tns:GetRenewalPriceInfoHttpPostIn" />
+      <wsdl:output message="tns:GetRenewalPriceInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRenewalInfo">
+      <wsdl:input message="tns:SetRenewalInfoHttpPostIn" />
+      <wsdl:output message="tns:SetRenewalInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNetConfigInfo">
+      <wsdl:input message="tns:GetNetConfigInfoHttpPostIn" />
+      <wsdl:output message="tns:GetNetConfigInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetNetConfigInfo">
+      <wsdl:input message="tns:SetNetConfigInfoHttpPostIn" />
+      <wsdl:output message="tns:SetNetConfigInfoHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AliPayWebServiceSoap" type="tns:AliPayWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PreCreate">
+      <soap:operation soapAction="http://tempuri.org/PreCreate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryByOrderNo">
+      <soap:operation soapAction="http://tempuri.org/QueryByOrderNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelPreOrder">
+      <soap:operation soapAction="http://tempuri.org/CancelPreOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRenewalPriceInfo">
+      <soap:operation soapAction="http://tempuri.org/GetRenewalPriceInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRenewalInfo">
+      <soap:operation soapAction="http://tempuri.org/SetRenewalInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNetConfigInfo">
+      <soap:operation soapAction="http://tempuri.org/GetNetConfigInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetNetConfigInfo">
+      <soap:operation soapAction="http://tempuri.org/SetNetConfigInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AliPayWebServiceSoap12" type="tns:AliPayWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PreCreate">
+      <soap12:operation soapAction="http://tempuri.org/PreCreate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryByOrderNo">
+      <soap12:operation soapAction="http://tempuri.org/QueryByOrderNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelPreOrder">
+      <soap12:operation soapAction="http://tempuri.org/CancelPreOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRenewalPriceInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetRenewalPriceInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRenewalInfo">
+      <soap12:operation soapAction="http://tempuri.org/SetRenewalInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNetConfigInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetNetConfigInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetNetConfigInfo">
+      <soap12:operation soapAction="http://tempuri.org/SetNetConfigInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AliPayWebServiceHttpGet" type="tns:AliPayWebServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="PreCreate">
+      <http:operation location="/PreCreate" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryByOrderNo">
+      <http:operation location="/QueryByOrderNo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelPreOrder">
+      <http:operation location="/CancelPreOrder" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRenewalPriceInfo">
+      <http:operation location="/GetRenewalPriceInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRenewalInfo">
+      <http:operation location="/SetRenewalInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNetConfigInfo">
+      <http:operation location="/GetNetConfigInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetNetConfigInfo">
+      <http:operation location="/SetNetConfigInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AliPayWebServiceHttpPost" type="tns:AliPayWebServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="PreCreate">
+      <http:operation location="/PreCreate" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryByOrderNo">
+      <http:operation location="/QueryByOrderNo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelPreOrder">
+      <http:operation location="/CancelPreOrder" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRenewalPriceInfo">
+      <http:operation location="/GetRenewalPriceInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRenewalInfo">
+      <http:operation location="/SetRenewalInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNetConfigInfo">
+      <http:operation location="/GetNetConfigInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetNetConfigInfo">
+      <http:operation location="/SetNetConfigInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AliPayWebService">
+    <wsdl:port name="AliPayWebServiceSoap" binding="tns:AliPayWebServiceSoap">
+      <soap:address location="http://120.79.137.8/DownLoad/BLL/AliPay/AliPayWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AliPayWebServiceSoap12" binding="tns:AliPayWebServiceSoap12">
+      <soap12:address location="http://120.79.137.8/DownLoad/BLL/AliPay/AliPayWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AliPayWebServiceHttpGet" binding="tns:AliPayWebServiceHttpGet">
+      <http:address location="http://120.79.137.8/DownLoad/BLL/AliPay/AliPayWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AliPayWebServiceHttpPost" binding="tns:AliPayWebServiceHttpPost">
+      <http:address location="http://120.79.137.8/DownLoad/BLL/AliPay/AliPayWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
