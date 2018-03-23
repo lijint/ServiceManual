@@ -1,22 +1,5 @@
 /bin/
 !/bin/Debug/Skins/*
-!/bin/Debug/a.html
-!/bin/Debug/db.mdb
-!/bin/Debug/DeepCyan.ssk
-!/bin/Debug/FOXITREADER_AX_PRO.OCX
-!/bin/Debug/log4net.config
-!/bin/Debug/myicon.ico
-!/bin/Debug/zoom in.png
-!/bin/Debug/zoom out.png
-!/bin/Release/Skins/*
-!/bin/Release/a.html
-!/bin/Release/db.mdb
-!/bin/Release/DeepCyan.ssk
-!/bin/Release/FOXITREADER_AX_PRO.OCX
-!/bin/Release/log4net.config
-!/bin/Release/myicon.ico
-!/bin/Release/zoom in.png
-!/bin/Release/zoom out.png
 *.user
 /obj/*
 *.csproj
