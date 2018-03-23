@@ -1,7 +1,4 @@
 /bin/*
-*.user
-/obj/*
-*.csproj
 !/bin/Debug/Skins/*
 !/bin/Debug/a.html
 !/bin/Debug/db.mdb
@@ -20,3 +17,6 @@
 !/bin/Release/myicon.ico
 !/bin/Release/zoom in.png
 !/bin/Release/zoom out.png
+*.user
+/obj/*
+*.csproj
