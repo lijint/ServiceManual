@@ -1,0 +1,13 @@
+/bin/*
+*.user
+/obj/*
+*.csproj
+!/bin/*/Skins/*
+!/bin/*/a.html
+!/bin/*/db.mdb
+!/bin/*/DeepCyan.ssk
+!/bin/*/FOXITREADER_AX_PRO.OCX
+!/bin/*/log4net.config
+!/bin/*/myicon.ico
+!/bin/*/zoom in.png
+!/bin/*/zoom out.png
