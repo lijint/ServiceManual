@@ -46,7 +46,7 @@ namespace ServiceManual
             catch
             {
                 Log.Error("[" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + System.Reflection.MethodBase.GetCurrentMethod().Name + "] err");
-                throw;
+                MessageBox.Show("视频地址解析错误");
             }
             return EmValue1 + VideoId + EmValue2;
             //return @"<embed src='http://player.youku.com/player.php/sid/XMzM3MzUyNDU2NA==/v.swf' allowFullScreen='true' quality='high' width='480' height='400' align='middle' allowScriptAccess='always' type='application/x-shockwave-flash'></embed>";

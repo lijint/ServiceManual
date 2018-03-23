@@ -1,0 +1,4 @@
+C:\Users\lijint.LANDI\Desktop\维修系统开发\code\MyServiceManual\ServiceManual\ServiceManual\bin\Debug\ServiceManual.exe.config
+C:\Users\lijint.LANDI\Desktop\维修系统开发\code\MyServiceManual\ServiceManual\ServiceManual\obj\Debug\Interop.FoxitReaderSDKProLib.dll
+C:\Users\lijint.LANDI\Desktop\维修系统开发\code\MyServiceManual\ServiceManual\ServiceManual\obj\Debug\AxInterop.FoxitReaderSDKProLib.dll
+C:\Users\lijint.LANDI\Desktop\维修系统开发\code\MyServiceManual\ServiceManual\ServiceManual\obj\Debug\ServiceManual.csproj.ResolveComReference.cache
