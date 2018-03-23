@@ -1,2 +1,11 @@
-/bin/*
+/bin/Debug/*.exe
+/bin/Debug/*.config
+/bin/Debug/*.manifest
+!/bin/Debug/log4net.config
+/bin/Release/*.exe
+/bin/Release/*.config
+/bin/Release/*.manifest
+!/bin/Release/log4net.config
 *.user
+/obj/*
+*.csproj
