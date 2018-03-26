@@ -1,5 +1,5 @@
-/bin/Debug/*
-!/bin/Debug/a.html
+/bin/*/*
+!/bin/*/a.html
 *.user
 /obj/*
 *.csproj
