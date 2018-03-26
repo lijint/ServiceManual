@@ -1,6 +1,5 @@
-/bin/Debug/
-
-!/bin/Debug/*.html
+/bin/Debug/*
+!/bin/Debug/a.html
 *.user
 /obj/*
 *.csproj
