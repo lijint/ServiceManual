@@ -1,5 +1,5 @@
 /bin/*/*
-!/bin/*/Skins/*
+!/bin/*/Skins/
 !/bin/*/a.html
 !/bin/*/db.mdb
 !/bin/*/DeepCyan.ssk
