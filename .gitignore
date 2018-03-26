@@ -1,4 +1,4 @@
-/bin/
+bin/
 !/bin/Debug/Skins/*
 !bin/Debug/a.html
 !/bin/Debug/db.mdb
