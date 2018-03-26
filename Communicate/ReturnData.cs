@@ -574,6 +574,7 @@ namespace ServiceManual
             return loginRes;
         }
 
+
         private class RecvRes
         {
             // 摘要:
