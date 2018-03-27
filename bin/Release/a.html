@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style type="text/css">
+    .center-in-center{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+</style>
+<script language="javascript" type="text/javascript">
+	function flashRightClick(e){
+        //debugger;
+		if(e.button == 2){
+			 window.event.returnValue=false; 
+    		//return false;
+        }
+	}
+</script>
+</head>
+<body>
+	<div id = "myiframe" class="center-in-center">
+        <param name="menu" value="false">
+		<embed src='http://player.youku.com/player.php/Type/Folder/Fid//Ob//sid/XMzY4NTcwMTMy==/v.swf' quality='high' width='480' height='400' align='middle' allowScriptAccess='always' allowFullScreen='true' wmode='opaque' onmousedown='flashRightClick(event)' mode='transparent' type='application/x-shockwave-flash' style='position: absolute;top: -200px;left: -240px;'></embed>
+	
+<!-- <iframe height=498 width=510 src='http://player.youku.com/embed/XMzY4NTcwMTMy' frameborder=0 'allowfullscreen'></iframe> -->
+
+<!-- 		<embed src='http://player.youku.com/player.php/sid/XMzM3MzUyNDU2NA==/v.swf' allowFullScreen='true' quality='high' width='480' height='400' align='middle' allowScriptAccess='always' type='application/x-shockwave-flash'></embed>
+ -->	</div>
+</body>
+</html>

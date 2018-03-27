@@ -1,4 +1,4 @@
-/bin/*
+/bin/*/*
 !/bin/Release/Skins/
 !/bin/Release/a.html
 !/bin/Release/db.mdb
