@@ -110,16 +110,16 @@
   </wsdl:binding>
   <wsdl:service name="UpdateFileWebService">
     <wsdl:port name="UpdateFileWebServiceSoap" binding="tns:UpdateFileWebServiceSoap">
-      <soap:address location="http://120.79.137.8/DownLoad/BLL/UpdateFile/UpdateFileWebService.asmx" />
+      <soap:address location="http://39.108.188.162/DownLoad/BLL/UpdateFile/UpdateFileWebService.asmx" />
     </wsdl:port>
     <wsdl:port name="UpdateFileWebServiceSoap12" binding="tns:UpdateFileWebServiceSoap12">
-      <soap12:address location="http://120.79.137.8/DownLoad/BLL/UpdateFile/UpdateFileWebService.asmx" />
+      <soap12:address location="http://39.108.188.162/DownLoad/BLL/UpdateFile/UpdateFileWebService.asmx" />
     </wsdl:port>
     <wsdl:port name="UpdateFileWebServiceHttpGet" binding="tns:UpdateFileWebServiceHttpGet">
-      <http:address location="http://120.79.137.8/DownLoad/BLL/UpdateFile/UpdateFileWebService.asmx" />
+      <http:address location="http://39.108.188.162/DownLoad/BLL/UpdateFile/UpdateFileWebService.asmx" />
     </wsdl:port>
     <wsdl:port name="UpdateFileWebServiceHttpPost" binding="tns:UpdateFileWebServiceHttpPost">
-      <http:address location="http://120.79.137.8/DownLoad/BLL/UpdateFile/UpdateFileWebService.asmx" />
+      <http:address location="http://39.108.188.162/DownLoad/BLL/UpdateFile/UpdateFileWebService.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
