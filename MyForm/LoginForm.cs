@@ -116,7 +116,9 @@ namespace ServiceManual
             checkBox1.Hide();
             checkBox2.Checked = !string.IsNullOrEmpty(Global.LoginUserPsw);
             txtPassWord.PasswordChar = '*';
+#if !DEBUG
             btnCreatAccount.Hide();
+#endif
             //Global.SkinName = "SportsCyan";     
             Global.SkinName = "OneBlue";
             this.skinEngine1.SkinFile = "Skins\\" + Global.SkinName + ".ssk";
@@ -146,7 +148,7 @@ namespace ServiceManual
         {
             //Thread.Sleep(5000);
             Setprams();
-            initSetConfig();
+            //initSetConfig();
             try
             {
                 Control.CheckForIllegalCrossThreadCalls = false;
@@ -261,7 +263,8 @@ namespace ServiceManual
         private void btnCreatAccount_Click(object sender, EventArgs e)
         {
             string returnMsg;
-            ReturnData.DoLogout("jint", out returnMsg);
+            ReturnData.DoLogout("szw", out returnMsg);
+            ReturnData.DoLogout("admin", out returnMsg);
 
         }
 

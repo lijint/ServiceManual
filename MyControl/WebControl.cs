@@ -17,12 +17,12 @@ namespace ServiceManual
         public WebControl()
         {
             InitializeComponent();
+            webBrowser1.IsWebBrowserContextMenuEnabled = false;
+            webBrowser1.ScriptErrorsSuppressed = true;
         }
 
         private void WebControl_Load(object sender, EventArgs e)
         {
-            webBrowser1.IsWebBrowserContextMenuEnabled = false;
-
         }
 
         public void DisplayWeb(string url)
@@ -48,6 +48,17 @@ namespace ServiceManual
         public void GetUrl()
         {
 
+        }
+
+        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            ((WebBrowser)sender).Document.Window.Error
++= new HtmlElementErrorEventHandler(Window_Error);
+        }
+
+        private void Window_Error(object sender, HtmlElementErrorEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }
