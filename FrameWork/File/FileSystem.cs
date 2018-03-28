@@ -217,7 +217,7 @@ namespace ServiceManual
                 {
                     foreach (CommonData.Data d in fileListAdd.DataList)
                     {
-                        Log.Info("Application.StartupPath + \"//\" + d.FilePath + \".temp\" = " + Application.StartupPath + "//" + d.FilePath + ".temp");
+                        //Log.Info("Application.StartupPath + \"//\" + d.FilePath + \".temp\" = " + Application.StartupPath + "//" + d.FilePath + ".temp");
                         if (HttpDownload(d.FileURL, Application.StartupPath + "//" + d.FilePath + ".temp"))
                         {
                             DESFileClass.EncryptFile(Application.StartupPath + "//" + d.FilePath + ".temp", Application.StartupPath + "//" + d.FilePath + ".xxx", Global.FileEnKey);

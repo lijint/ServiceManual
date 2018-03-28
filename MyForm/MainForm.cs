@@ -43,6 +43,7 @@ namespace ServiceManual
         {
             try
             {
+                lbBeingPro.Location = new Point(this.Width / 2 - 300, this.Height / 2 - 100);
                 BeingProcess(true);
                 BackgroundWorker bw = new BackgroundWorker();
                 bw.DoWork += initMainForm;
@@ -309,11 +310,7 @@ namespace ServiceManual
                 string filepath = tn.Name;
                 if (filetype != CommonData.FileType.Folder && filetype != CommonData.FileType.None)
                 {
-                    //e.Node.ImageIndex = 1;
                     string name = tn.Text;
-                    //string path = tn.Tag.ToString();
-                    //IconIndexes ic = (IconIndexes)tn.ImageIndex;
-                    //tn.pat
                     string fullPath = Global.SysFilePath + "\\" + tn.FullPath;
                     webBrowserControl.ClearVideo();
                     switch (filetype)
@@ -533,42 +530,50 @@ namespace ServiceManual
                 //    Height = MyPanel.Height,
                 //    Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right
                 //};
-                webBrowserControl = new WebBrowserControl
-                {
-                    Width = MyPanel.Width,
-                    Height = MyPanel.Height,
-                    Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right
-                };
-                txtControl = new TxtControl
-                {
-                    Width = MyPanel.Width,
-                    Height = MyPanel.Height,
-                    Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right
-                };
-                picControl = new PictureControl
-                {
-                    Width = MyPanel.Width,
-                    Height = MyPanel.Height,
-                    Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right
-                };
-                pdfFoxControl = new PDFFoxControl
-                {
-                    Width = MyPanel.Width,
-                    Height = MyPanel.Height,
-                    Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right
-                };
-                pcbControl = new PCBControl
-                {
-                    Width = MyPanel.Width,
-                    Height = MyPanel.Height,
-                    Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right
-                };
-                webControl = new WebControl
-                {
-                    Width = MyPanel.Width,
-                    Height = MyPanel.Height,
-                    Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right
-                };
+                webBrowserControl = new WebBrowserControl();
+                txtControl = new TxtControl();
+                picControl = new PictureControl();
+                pdfFoxControl = new PDFFoxControl();
+                pcbControl = new PCBControl();
+                webControl = new WebControl();
+
+                NewControl<WebBrowserControl>(ref webBrowserControl);
+                NewControl<TxtControl>(ref txtControl);
+                NewControl<PictureControl>(ref picControl);
+                NewControl<PDFFoxControl>(ref pdfFoxControl);
+                NewControl<PCBControl>(ref pcbControl);
+                NewControl<WebControl>(ref webControl);
+
+                //txtControl = new TxtControl
+                //{
+                //    Width = MyPanel.Width,
+                //    Height = MyPanel.Height,
+                //    Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right
+                //};
+                //picControl = new PictureControl
+                //{
+                //    Width = MyPanel.Width,
+                //    Height = MyPanel.Height,
+                //    Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right
+                //};
+                //pdfFoxControl = new PDFFoxControl
+                //{
+                //    Width = MyPanel.Width,
+                //    Height = MyPanel.Height,
+                //    Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right
+                //};
+                //pcbControl = new PCBControl
+                //{
+                //    Width = MyPanel.Width,
+                //    Height = MyPanel.Height,
+                //    Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right
+                //};
+                //webControl = new WebControl
+                //{
+                //    Width = MyPanel.Width,
+                //    Height = MyPanel.Height,
+                //    Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right
+                //};
 
                 IsPicOrTxt(false);
             }
@@ -577,6 +582,13 @@ namespace ServiceManual
                 Log.Error("[" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + System.Reflection.MethodBase.GetCurrentMethod().Name + "] err" + ex);
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void NewControl<T>(ref T t) where T : Control
+        {
+            t.Width = MyPanel.Width;
+            t.Height = MyPanel.Height;
+            t.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right;
         }
 
         private CommonData.FileType GetFileType(string FileExName)

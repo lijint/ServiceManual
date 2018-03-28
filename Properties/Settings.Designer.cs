@@ -26,7 +26,7 @@ namespace ServiceManual.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://120.79.137.8/DownLoad/BLL/Login/LoginWebService.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://172.20.8.24/DownLoad/BLL/Login/LoginWebService.asmx")]
         public string ServiceManual_WRLogin_LoginWebService {
             get {
                 return ((string)(this["ServiceManual_WRLogin_LoginWebService"]));
@@ -36,7 +36,7 @@ namespace ServiceManual.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://120.79.137.8/DownLoad/BLL/UpdateFile/UpdateFileWebService.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://172.20.8.24/DownLoad/BLL/UpdateFile/UpdateFileWebService.asmx")]
         public string ServiceManual_WRFileUpdate_UpdateFileWebService {
             get {
                 return ((string)(this["ServiceManual_WRFileUpdate_UpdateFileWebService"]));
@@ -46,7 +46,7 @@ namespace ServiceManual.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://120.79.137.8/DownLoad/BLL/AliPay/AliPayWebService.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://39.108.188.162/DownLoad/BLL/AliPay/AliPayWebService.asmx")]
         public string ServiceManual_WRAliPay_AliPayWebService {
             get {
                 return ((string)(this["ServiceManual_WRAliPay_AliPayWebService"]));

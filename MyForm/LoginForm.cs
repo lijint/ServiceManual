@@ -34,7 +34,10 @@ namespace ServiceManual
             else
             {
                 Log.Error("注册未成功");
-                MessageBox.Show("组件注册未成功");
+                if (MessageBox.Show("组件注册未成功，首次运行请使用管理员权限登录！")==DialogResult.OK)
+                {
+                    System.Environment.Exit(0);
+                }
             }
         }
 

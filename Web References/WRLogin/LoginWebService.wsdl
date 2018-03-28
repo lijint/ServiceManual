@@ -643,16 +643,16 @@
   </wsdl:binding>
   <wsdl:service name="LoginWebService">
     <wsdl:port name="LoginWebServiceSoap" binding="tns:LoginWebServiceSoap">
-      <soap:address location="http://39.108.188.162/DownLoad/BLL/Login/LoginWebService.asmx" />
+      <soap:address location="http://172.20.8.24/DownLoad/BLL/Login/LoginWebService.asmx" />
     </wsdl:port>
     <wsdl:port name="LoginWebServiceSoap12" binding="tns:LoginWebServiceSoap12">
-      <soap12:address location="http://39.108.188.162/DownLoad/BLL/Login/LoginWebService.asmx" />
+      <soap12:address location="http://172.20.8.24/DownLoad/BLL/Login/LoginWebService.asmx" />
     </wsdl:port>
     <wsdl:port name="LoginWebServiceHttpGet" binding="tns:LoginWebServiceHttpGet">
-      <http:address location="http://39.108.188.162/DownLoad/BLL/Login/LoginWebService.asmx" />
+      <http:address location="http://172.20.8.24/DownLoad/BLL/Login/LoginWebService.asmx" />
     </wsdl:port>
     <wsdl:port name="LoginWebServiceHttpPost" binding="tns:LoginWebServiceHttpPost">
-      <http:address location="http://39.108.188.162/DownLoad/BLL/Login/LoginWebService.asmx" />
+      <http:address location="http://172.20.8.24/DownLoad/BLL/Login/LoginWebService.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

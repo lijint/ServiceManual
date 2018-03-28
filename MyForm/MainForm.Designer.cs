@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("文件目录");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("文件目录");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.btnFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,35 +95,35 @@
             // btnMyInfo
             // 
             this.btnMyInfo.Name = "btnMyInfo";
-            this.btnMyInfo.Size = new System.Drawing.Size(152, 22);
+            this.btnMyInfo.Size = new System.Drawing.Size(124, 22);
             this.btnMyInfo.Text = "我的信息";
             this.btnMyInfo.Click += new System.EventHandler(this.btnMyInfo_Click);
             // 
             // btnPay
             // 
             this.btnPay.Name = "btnPay";
-            this.btnPay.Size = new System.Drawing.Size(152, 22);
+            this.btnPay.Size = new System.Drawing.Size(124, 22);
             this.btnPay.Text = "充值缴费";
             this.btnPay.Click += new System.EventHandler(this.btnPay_Click);
             // 
             // btnLogout
             // 
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(152, 22);
+            this.btnLogout.Size = new System.Drawing.Size(124, 22);
             this.btnLogout.Text = "注销登录";
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // btnChangePsd
             // 
             this.btnChangePsd.Name = "btnChangePsd";
-            this.btnChangePsd.Size = new System.Drawing.Size(152, 22);
+            this.btnChangePsd.Size = new System.Drawing.Size(124, 22);
             this.btnChangePsd.Text = "修改密码";
             this.btnChangePsd.Click += new System.EventHandler(this.btnChangePsd_Click);
             // 
             // btnChangeSkin
             // 
             this.btnChangeSkin.Name = "btnChangeSkin";
-            this.btnChangeSkin.Size = new System.Drawing.Size(152, 22);
+            this.btnChangeSkin.Size = new System.Drawing.Size(124, 22);
             this.btnChangeSkin.Text = "换肤";
             this.btnChangeSkin.Click += new System.EventHandler(this.btnChangeSkin_Click);
             // 
@@ -134,13 +134,13 @@
             this.tv.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tv.Location = new System.Drawing.Point(9, 66);
             this.tv.Name = "tv";
-            treeNode7.Name = "gen";
-            treeNode7.Text = "文件目录";
+            treeNode1.Name = "gen";
+            treeNode1.Text = "文件目录";
             this.tv.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode7});
+            treeNode1});
             this.tv.ShowPlusMinus = false;
             this.tv.ShowRootLines = false;
-            this.tv.Size = new System.Drawing.Size(223, 393);
+            this.tv.Size = new System.Drawing.Size(223, 522);
             this.tv.TabIndex = 4;
             this.tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.Tv_AfterSelect);
             // 
@@ -152,14 +152,15 @@
             this.MyPanel.Controls.Add(this.lbBeingPro);
             this.MyPanel.Location = new System.Drawing.Point(241, 44);
             this.MyPanel.Name = "MyPanel";
-            this.MyPanel.Size = new System.Drawing.Size(584, 415);
+            this.MyPanel.Size = new System.Drawing.Size(584, 544);
             this.MyPanel.TabIndex = 6;
             // 
             // lbBeingPro
             // 
+            this.lbBeingPro.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbBeingPro.AutoSize = true;
             this.lbBeingPro.Font = new System.Drawing.Font("幼圆", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBeingPro.Location = new System.Drawing.Point(306, 335);
+            this.lbBeingPro.Location = new System.Drawing.Point(248, 87);
             this.lbBeingPro.Name = "lbBeingPro";
             this.lbBeingPro.Size = new System.Drawing.Size(176, 24);
             this.lbBeingPro.TabIndex = 0;
@@ -245,7 +246,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(837, 471);
+            this.ClientSize = new System.Drawing.Size(837, 600);
             this.Controls.Add(this.lbAD);
             this.Controls.Add(this.btnSreach);
             this.Controls.Add(this.textBox1);
