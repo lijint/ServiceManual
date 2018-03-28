@@ -600,16 +600,16 @@
   </wsdl:binding>
   <wsdl:service name="AliPayWebService">
     <wsdl:port name="AliPayWebServiceSoap" binding="tns:AliPayWebServiceSoap">
-      <soap:address location="http://39.108.188.162/DownLoad/BLL/AliPay/AliPayWebService.asmx" />
+      <soap:address location="http://172.20.8.24/DownLoad/BLL/AliPay/AliPayWebService.asmx" />
     </wsdl:port>
     <wsdl:port name="AliPayWebServiceSoap12" binding="tns:AliPayWebServiceSoap12">
-      <soap12:address location="http://39.108.188.162/DownLoad/BLL/AliPay/AliPayWebService.asmx" />
+      <soap12:address location="http://172.20.8.24/DownLoad/BLL/AliPay/AliPayWebService.asmx" />
     </wsdl:port>
     <wsdl:port name="AliPayWebServiceHttpGet" binding="tns:AliPayWebServiceHttpGet">
-      <http:address location="http://39.108.188.162/DownLoad/BLL/AliPay/AliPayWebService.asmx" />
+      <http:address location="http://172.20.8.24/DownLoad/BLL/AliPay/AliPayWebService.asmx" />
     </wsdl:port>
     <wsdl:port name="AliPayWebServiceHttpPost" binding="tns:AliPayWebServiceHttpPost">
-      <http:address location="http://39.108.188.162/DownLoad/BLL/AliPay/AliPayWebService.asmx" />
+      <http:address location="http://172.20.8.24/DownLoad/BLL/AliPay/AliPayWebService.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

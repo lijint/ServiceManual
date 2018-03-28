@@ -387,10 +387,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>ServiceManual_WRAliPay_AliPayWebService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://120.79.137.8/DownLoad/BLL/Login/LoginWebService.asmx">
+    <WebReferenceUrl Include="http://172.20.8.34/DownLoad/BLL/Login/LoginWebService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\WRLogin\</RelPath>
-      <UpdateFromURL>http://120.79.137.8/DownLoad/BLL/Login/LoginWebService.asmx</UpdateFromURL>
+      <UpdateFromURL>http://172.20.8.34/DownLoad/BLL/Login/LoginWebService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -398,10 +398,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>ServiceManual_WRLogin_LoginWebService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://120.79.137.8/DownLoad/BLL/UpdateFile/UpdateFileWebService.asmx">
+    <WebReferenceUrl Include="http://172.20.8.34/DownLoad/BLL/UpdateFile/UpdateFileWebService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\WRFileUpdate\</RelPath>
-      <UpdateFromURL>http://120.79.137.8/DownLoad/BLL/UpdateFile/UpdateFileWebService.asmx</UpdateFromURL>
+      <UpdateFromURL>http://172.20.8.34/DownLoad/BLL/UpdateFile/UpdateFileWebService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

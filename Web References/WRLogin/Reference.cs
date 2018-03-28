@@ -104,7 +104,7 @@ namespace ServiceManual.WRLogin {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CreateAccount", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Result CreateAccount(string account, string password, string userName, string failureDateTime, string userTel, string userPermission, string stateCode) {
+        public Result CreateAccount(string account, string password, string userName, string failureDateTime, string userTel, string userPermission, string stateCode, string filePermission) {
             object[] results = this.Invoke("CreateAccount", new object[] {
                         account,
                         password,
@@ -112,17 +112,18 @@ namespace ServiceManual.WRLogin {
                         failureDateTime,
                         userTel,
                         userPermission,
-                        stateCode});
+                        stateCode,
+                        filePermission});
             return ((Result)(results[0]));
         }
         
         /// <remarks/>
-        public void CreateAccountAsync(string account, string password, string userName, string failureDateTime, string userTel, string userPermission, string stateCode) {
-            this.CreateAccountAsync(account, password, userName, failureDateTime, userTel, userPermission, stateCode, null);
+        public void CreateAccountAsync(string account, string password, string userName, string failureDateTime, string userTel, string userPermission, string stateCode, string filePermission) {
+            this.CreateAccountAsync(account, password, userName, failureDateTime, userTel, userPermission, stateCode, filePermission, null);
         }
         
         /// <remarks/>
-        public void CreateAccountAsync(string account, string password, string userName, string failureDateTime, string userTel, string userPermission, string stateCode, object userState) {
+        public void CreateAccountAsync(string account, string password, string userName, string failureDateTime, string userTel, string userPermission, string stateCode, string filePermission, object userState) {
             if ((this.CreateAccountOperationCompleted == null)) {
                 this.CreateAccountOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCreateAccountOperationCompleted);
             }
@@ -133,7 +134,8 @@ namespace ServiceManual.WRLogin {
                         failureDateTime,
                         userTel,
                         userPermission,
-                        stateCode}, this.CreateAccountOperationCompleted, userState);
+                        stateCode,
+                        filePermission}, this.CreateAccountOperationCompleted, userState);
         }
         
         private void OnCreateAccountOperationCompleted(object arg) {
@@ -238,7 +240,7 @@ namespace ServiceManual.WRLogin {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/EditeAccountInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Result EditeAccountInfo(string account, string password, string userName, string failureDateTime, string userTel, string userPermission, string stateCode) {
+        public Result EditeAccountInfo(string account, string password, string userName, string failureDateTime, string userTel, string userPermission, string stateCode, string filePermission) {
             object[] results = this.Invoke("EditeAccountInfo", new object[] {
                         account,
                         password,
@@ -246,17 +248,18 @@ namespace ServiceManual.WRLogin {
                         failureDateTime,
                         userTel,
                         userPermission,
-                        stateCode});
+                        stateCode,
+                        filePermission});
             return ((Result)(results[0]));
         }
         
         /// <remarks/>
-        public void EditeAccountInfoAsync(string account, string password, string userName, string failureDateTime, string userTel, string userPermission, string stateCode) {
-            this.EditeAccountInfoAsync(account, password, userName, failureDateTime, userTel, userPermission, stateCode, null);
+        public void EditeAccountInfoAsync(string account, string password, string userName, string failureDateTime, string userTel, string userPermission, string stateCode, string filePermission) {
+            this.EditeAccountInfoAsync(account, password, userName, failureDateTime, userTel, userPermission, stateCode, filePermission, null);
         }
         
         /// <remarks/>
-        public void EditeAccountInfoAsync(string account, string password, string userName, string failureDateTime, string userTel, string userPermission, string stateCode, object userState) {
+        public void EditeAccountInfoAsync(string account, string password, string userName, string failureDateTime, string userTel, string userPermission, string stateCode, string filePermission, object userState) {
             if ((this.EditeAccountInfoOperationCompleted == null)) {
                 this.EditeAccountInfoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEditeAccountInfoOperationCompleted);
             }
@@ -267,7 +270,8 @@ namespace ServiceManual.WRLogin {
                         failureDateTime,
                         userTel,
                         userPermission,
-                        stateCode}, this.EditeAccountInfoOperationCompleted, userState);
+                        stateCode,
+                        filePermission}, this.EditeAccountInfoOperationCompleted, userState);
         }
         
         private void OnEditeAccountInfoOperationCompleted(object arg) {

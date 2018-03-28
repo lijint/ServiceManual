@@ -12,6 +12,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="userTel" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="userPermission" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="stateCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="filePermission" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -90,6 +91,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="userTel" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="userPermission" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="stateCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="filePermission" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -181,6 +183,7 @@
     <wsdl:part name="userTel" type="s:string" />
     <wsdl:part name="userPermission" type="s:string" />
     <wsdl:part name="stateCode" type="s:string" />
+    <wsdl:part name="filePermission" type="s:string" />
   </wsdl:message>
   <wsdl:message name="CreateAccountHttpGetOut">
     <wsdl:part name="Body" element="tns:Result" />
@@ -214,6 +217,7 @@
     <wsdl:part name="userTel" type="s:string" />
     <wsdl:part name="userPermission" type="s:string" />
     <wsdl:part name="stateCode" type="s:string" />
+    <wsdl:part name="filePermission" type="s:string" />
   </wsdl:message>
   <wsdl:message name="EditeAccountInfoHttpGetOut">
     <wsdl:part name="Body" element="tns:Result" />
@@ -238,6 +242,7 @@
     <wsdl:part name="userTel" type="s:string" />
     <wsdl:part name="userPermission" type="s:string" />
     <wsdl:part name="stateCode" type="s:string" />
+    <wsdl:part name="filePermission" type="s:string" />
   </wsdl:message>
   <wsdl:message name="CreateAccountHttpPostOut">
     <wsdl:part name="Body" element="tns:Result" />
@@ -271,6 +276,7 @@
     <wsdl:part name="userTel" type="s:string" />
     <wsdl:part name="userPermission" type="s:string" />
     <wsdl:part name="stateCode" type="s:string" />
+    <wsdl:part name="filePermission" type="s:string" />
   </wsdl:message>
   <wsdl:message name="EditeAccountInfoHttpPostOut">
     <wsdl:part name="Body" element="tns:Result" />

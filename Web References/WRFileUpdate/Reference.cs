@@ -31,6 +31,8 @@ namespace ServiceManual.WRFileUpdate {
         
         private System.Threading.SendOrPostCallback GetUpdateFileListOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetFilePermissionListOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -73,29 +75,61 @@ namespace ServiceManual.WRFileUpdate {
         public event GetUpdateFileListCompletedEventHandler GetUpdateFileListCompleted;
         
         /// <remarks/>
+        public event GetFilePermissionListCompletedEventHandler GetFilePermissionListCompleted;
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetUpdateFileList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Result GetUpdateFileList() {
-            object[] results = this.Invoke("GetUpdateFileList", new object[0]);
+        public Result GetUpdateFileList(string account) {
+            object[] results = this.Invoke("GetUpdateFileList", new object[] {
+                        account});
             return ((Result)(results[0]));
         }
         
         /// <remarks/>
-        public void GetUpdateFileListAsync() {
-            this.GetUpdateFileListAsync(null);
+        public void GetUpdateFileListAsync(string account) {
+            this.GetUpdateFileListAsync(account, null);
         }
         
         /// <remarks/>
-        public void GetUpdateFileListAsync(object userState) {
+        public void GetUpdateFileListAsync(string account, object userState) {
             if ((this.GetUpdateFileListOperationCompleted == null)) {
                 this.GetUpdateFileListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetUpdateFileListOperationCompleted);
             }
-            this.InvokeAsync("GetUpdateFileList", new object[0], this.GetUpdateFileListOperationCompleted, userState);
+            this.InvokeAsync("GetUpdateFileList", new object[] {
+                        account}, this.GetUpdateFileListOperationCompleted, userState);
         }
         
         private void OnGetUpdateFileListOperationCompleted(object arg) {
             if ((this.GetUpdateFileListCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetUpdateFileListCompleted(this, new GetUpdateFileListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetFilePermissionList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Result GetFilePermissionList() {
+            object[] results = this.Invoke("GetFilePermissionList", new object[0]);
+            return ((Result)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetFilePermissionListAsync() {
+            this.GetFilePermissionListAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetFilePermissionListAsync(object userState) {
+            if ((this.GetFilePermissionListOperationCompleted == null)) {
+                this.GetFilePermissionListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetFilePermissionListOperationCompleted);
+            }
+            this.InvokeAsync("GetFilePermissionList", new object[0], this.GetFilePermissionListOperationCompleted, userState);
+        }
+        
+        private void OnGetFilePermissionListOperationCompleted(object arg) {
+            if ((this.GetFilePermissionListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetFilePermissionListCompleted(this, new GetFilePermissionListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -248,6 +282,32 @@ namespace ServiceManual.WRFileUpdate {
         private object[] results;
         
         internal GetUpdateFileListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Result Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Result)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2558.0")]
+    public delegate void GetFilePermissionListCompletedEventHandler(object sender, GetFilePermissionListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2558.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetFilePermissionListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetFilePermissionListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Results>
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://39.108.188.162/DownLoad/BLL/AliPay/AliPayWebService.asmx?wsdl" filename="AliPayWebService.wsdl" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="http://39.108.188.162/DownLoad/BLL/AliPay/AliPayWebService.asmx?disco" filename="AliPayWebService.disco" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="http://172.20.8.24/DownLoad/BLL/AliPay/AliPayWebService.asmx?disco" filename="AliPayWebService.disco" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://172.20.8.24/DownLoad/BLL/AliPay/AliPayWebService.asmx?wsdl" filename="AliPayWebService.wsdl" />
   </Results>
 </DiscoveryClientResultsFile>

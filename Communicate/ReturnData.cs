@@ -111,13 +111,13 @@ namespace ServiceManual
         /// <param name="retmsg"></param>
         /// <param name="filedata"></param>
         /// <returns></returns>
-        public static int DoUpdateFileList(out string retmsg, out CommonData.FileData filedata)
+        public static int DoUpdateFileList(string account, out string retmsg, out CommonData.FileData filedata)
         {
             int res = -1;
             try
             {
                 WRFileUpdate.UpdateFileWebService ws = new WRFileUpdate.UpdateFileWebService();
-                RecvRes retres = TransRes(ws.GetUpdateFileList());
+                RecvRes retres = TransRes(ws.GetUpdateFileList(account));
                 retmsg = retres.Description;
                 filedata = null;
 
@@ -144,6 +144,37 @@ namespace ServiceManual
             }
             return res;
         }
+
+        /// <summary>
+        /// 获取所有权限文件夹名称
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="retmsg"></param>
+        /// <returns></returns>
+        public static int DoGetFilePermissionList(out List<CommonData.FilePermission> FilePermission, out string retmsg)
+        {
+            int res = -1;
+            try
+            {
+                FilePermission = null;
+                WRFileUpdate.UpdateFileWebService ws = new WRFileUpdate.UpdateFileWebService();
+                RecvRes retres = TransRes(ws.GetFilePermissionList());
+                retmsg = retres.Description;
+                if (retres.IsOK)
+                {
+                    FilePermission = JsonDeal.JsonData2FilePermissionlist(retres.ExtData);
+                    res = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                FilePermission = null;
+                retmsg = ex.Message;
+                throw;
+            }
+            return res;
+        }
+
         #endregion
         
         #region UserInfo
@@ -203,7 +234,7 @@ namespace ServiceManual
             try
             {
                 WRLogin.LoginWebService ws = new WRLogin.LoginWebService();
-                RecvRes retres = TransRes(ws.EditeAccountInfo(data.Account, data.PassWord, data.UserName, data.FailureDateTime.ToString(), data.UserTel, data.UserPermission.ToString(), data.StateCode.ToString()));
+                RecvRes retres = TransRes(ws.EditeAccountInfo(data.Account, data.PassWord, data.UserName, data.FailureDateTime.ToString(), data.UserTel, data.UserPermission.ToString(), data.StateCode.ToString(), data.FilePermission));
                 retmsg = retres.Description;
                 if (retres.IsOK)
                 {
@@ -230,7 +261,7 @@ namespace ServiceManual
             try
             {
                 WRLogin.LoginWebService ws = new WRLogin.LoginWebService();
-                RecvRes retres = TransRes(ws.CreateAccount(data.Account, data.PassWord, data.UserName, data.FailureDateTime.ToString(), data.UserTel, data.UserPermission.ToString(), data.StateCode.ToString()));
+                RecvRes retres = TransRes(ws.CreateAccount(data.Account, data.PassWord, data.UserName, data.FailureDateTime.ToString(), data.UserTel, data.UserPermission.ToString(), data.StateCode.ToString(), data.FilePermission));
                 retmsg = retres.Description;
                 if (retres.IsOK)
                 {

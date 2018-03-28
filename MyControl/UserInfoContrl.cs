@@ -7,7 +7,6 @@ namespace ServiceManual
     public partial class UserInfoContrl : UserControl
     {
         List<CommonData.UserMsgData> userMsgList;
-
         public UserInfoContrl()
         {
             InitializeComponent();
@@ -19,6 +18,7 @@ namespace ServiceManual
             InitForm();
             DisplayUserMsg();
         }
+
         #region TestAddUserList
         private void TestAddUserList()
         {
@@ -64,6 +64,7 @@ namespace ServiceManual
             }
             return ret;
         }
+
 
         #region 刷新显示用户列表
         /// <summary>

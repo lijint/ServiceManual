@@ -54,11 +54,13 @@ namespace ServiceManual
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public string UserTel { get; set; }
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-            public int UserPermission { get; set; }                             //0表示没权限，1表示使用者，2表示管理员
+            public int UserPermission { get; set; }  //0表示没权限，1表示使用者，2表示管理员
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public bool IsOnline { get; set; }
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public bool StateCode { get; set; }
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public string FilePermission { get; set; }
         }
 
         public class PayData
@@ -114,6 +116,12 @@ namespace ServiceManual
             public string RenewalTime { get; set; }
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public string Price { get; set; }
+        }
+
+        public class FilePermission
+        {
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public string FileName { get; set; }
         }
     }
 }

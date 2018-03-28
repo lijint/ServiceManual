@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace ServiceManual
@@ -8,6 +9,8 @@ namespace ServiceManual
 
         private int OptionType;   //1---add 2---modify
         public CommonData.UserMsgData userdata;
+
+        List<CommonData.FilePermission> filePermissionList;
         public ManageUserForm()
         {
             InitializeComponent();
@@ -22,6 +25,11 @@ namespace ServiceManual
             cbUserStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             cbUserTime.DropDownStyle = ComboBoxStyle.DropDownList;
             cbIsOnline.DropDownStyle = ComboBoxStyle.DropDownList;
+            filePermissionList = new List<CommonData.FilePermission>();
+            if (GetFilePermissionList() == 0)
+            {
+                
+            }
             if (userdata == null)
             {
                 userdata = new CommonData.UserMsgData();
@@ -189,6 +197,26 @@ namespace ServiceManual
                 Log.Error("[" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + System.Reflection.MethodBase.GetCurrentMethod().Name + "] err" + ex);
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private int GetFilePermissionList()
+        {
+            int ret = -1;
+            string retmsg;
+            try
+            {
+                ret = ReturnData.DoGetFilePermissionList(out filePermissionList, out retmsg);
+                if (ret != 0)
+                {
+                    MessageBox.Show(retmsg);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error("[" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + System.Reflection.MethodBase.GetCurrentMethod().Name + "] err" + ex);
+                MessageBox.Show(ex.Message);
+            }
+            return ret;
         }
 
 

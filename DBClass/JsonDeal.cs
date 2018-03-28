@@ -58,6 +58,13 @@ namespace ServiceManual
             return datalist;
         }
 
+        public static List<CommonData.FilePermission> JsonData2FilePermissionlist(string jsondata)
+        {
+            //filedata = JsonConvert.DeserializeObject<CommonData.FileData>(jsondata);
+            List<CommonData.FilePermission> datalist = JsonConvert.DeserializeObject<List<CommonData.FilePermission>>(jsondata);
+            return datalist;
+        }
+
     
     }
 }
