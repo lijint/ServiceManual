@@ -70,13 +70,13 @@ namespace ServiceManual
         /// <summary>
         /// 获取服务器上filelist
         /// </summary>
-        public void GetServerFileList()
+        public void GetServerFileList(string userAccount)
         {
             //fileListAccpect = new CommonData.FileData();
             try
             {
                 string resmsg;
-                int res = ReturnData.DoUpdateFileList(out resmsg, out fileListAccept);
+                int res = ReturnData.DoUpdateFileList(userAccount,out resmsg, out fileListAccept);
 
                 if (res != 0)
                 {

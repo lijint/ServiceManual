@@ -64,6 +64,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MyControl\ComCheckBoxList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyControl\ComCheckBoxList.Designer.cs">
+      <DependentUpon>ComCheckBoxList.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyForm\ChangeSkin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -228,6 +234,9 @@
     <Compile Include="MyControl\WebControl.Designer.cs">
       <DependentUpon>WebControl.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="MyControl\ComCheckBoxList.resx">
+      <DependentUpon>ComCheckBoxList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyForm\ChangeSkin.resx">
       <DependentUpon>ChangeSkin.cs</DependentUpon>
     </EmbeddedResource>
@@ -376,10 +385,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://120.79.137.8/DownLoad/BLL/AliPay/AliPayWebService.asmx">
+    <WebReferenceUrl Include="http://172.20.8.24/DownLoad/BLL/AliPay/AliPayWebService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\WRAliPay\</RelPath>
-      <UpdateFromURL>http://120.79.137.8/DownLoad/BLL/AliPay/AliPayWebService.asmx</UpdateFromURL>
+      <UpdateFromURL>http://172.20.8.24/DownLoad/BLL/AliPay/AliPayWebService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -387,10 +396,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>ServiceManual_WRAliPay_AliPayWebService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://172.20.8.34/DownLoad/BLL/Login/LoginWebService.asmx">
+    <WebReferenceUrl Include="http://172.20.8.24/DownLoad/BLL/Login/LoginWebService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\WRLogin\</RelPath>
-      <UpdateFromURL>http://172.20.8.34/DownLoad/BLL/Login/LoginWebService.asmx</UpdateFromURL>
+      <UpdateFromURL>http://172.20.8.24/DownLoad/BLL/Login/LoginWebService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -398,10 +407,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>ServiceManual_WRLogin_LoginWebService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://172.20.8.34/DownLoad/BLL/UpdateFile/UpdateFileWebService.asmx">
+    <WebReferenceUrl Include="http://172.20.8.24/DownLoad/BLL/UpdateFile/UpdateFileWebService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\WRFileUpdate\</RelPath>
-      <UpdateFromURL>http://172.20.8.34/DownLoad/BLL/UpdateFile/UpdateFileWebService.asmx</UpdateFromURL>
+      <UpdateFromURL>http://172.20.8.24/DownLoad/BLL/UpdateFile/UpdateFileWebService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

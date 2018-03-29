@@ -398,7 +398,7 @@ namespace ServiceManual
                 fileSys.fileListLocal.DataList.Clear();
                 fileSys.fileListAccept.DataList.Clear();
                 fileSys.SetLocalFileList(Global.SysFilePath);
-                fileSys.GetServerFileList();
+                fileSys.GetServerFileList(Global.userMsgData.Account);
 
                 if (fileSys.fileListAccept.DataList.Count != 0)
                     IsNeedUpdateFile = fileSys.MatchFilePath();
@@ -495,7 +495,7 @@ namespace ServiceManual
             fileSys.fileListAccept.DataList.Clear();
             //if (fileSys.fileListAccept.DataList.Count == 0)
             fileSys.SetLocalFileList(Global.SysFilePath);
-            fileSys.GetServerFileList();
+            fileSys.GetServerFileList(Global.userMsgData.Account);
 
             if (fileSys.fileListLocal.DataList.Count != 0 && fileSys.fileListAccept.DataList.Count != 0)
                 IsNeedUpdateFile = fileSys.MatchFilePath();

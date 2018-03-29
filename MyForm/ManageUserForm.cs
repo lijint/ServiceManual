@@ -26,9 +26,12 @@ namespace ServiceManual
             cbUserTime.DropDownStyle = ComboBoxStyle.DropDownList;
             cbIsOnline.DropDownStyle = ComboBoxStyle.DropDownList;
             filePermissionList = new List<CommonData.FilePermission>();
-            if (GetFilePermissionList() == 0)
+            if (GetFilePermissionList() == 0 && filePermissionList != null)
             {
-                
+                foreach (CommonData.FilePermission f in filePermissionList)
+                {
+                    comCheckBoxList1.AddItems(f.FileName);
+                }
             }
             if (userdata == null)
             {
