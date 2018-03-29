@@ -6,15 +6,14 @@ namespace ServiceManual
 {
     public partial class ManageUserForm : Form
     {
-
         private int OptionType;   //1---add 2---modify
         public CommonData.UserMsgData userdata;
 
-        List<CommonData.FilePermission> filePermissionList;
+        private List<CommonData.FilePermission> filePermissionList;
+
         public ManageUserForm()
         {
             InitializeComponent();
-
         }
 
         public ManageUserForm(int inOptionType)
@@ -67,9 +66,11 @@ namespace ServiceManual
                         case 0:
                             cbUserPermission.SelectedItem = "无权限用户";
                             break;
+
                         case 1:
                             cbUserPermission.SelectedItem = "普通用户";
                             break;
+
                         case 2:
                             cbUserPermission.SelectedItem = "管理员";
                             break;
@@ -85,12 +86,11 @@ namespace ServiceManual
             }
         }
 
-
         private void BtnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                if(string.IsNullOrEmpty(tbAccount.Text) || string.IsNullOrEmpty(cbUserPermission.Text) || string.IsNullOrEmpty(cbUserTime.Text))
+                if (string.IsNullOrEmpty(tbAccount.Text) || string.IsNullOrEmpty(cbUserPermission.Text) || string.IsNullOrEmpty(cbUserTime.Text))
                 {
                     throw new Exception("所填值不允许为空");
                 }
@@ -122,6 +122,7 @@ namespace ServiceManual
                         case "启用":
                             userdata.StateCode = true;
                             break;
+
                         case "禁用":
                             userdata.StateCode = false;
                             break;
@@ -132,15 +133,17 @@ namespace ServiceManual
                     case "无权限用户":
                         userdata.UserPermission = 0;
                         break;
+
                     case "普通用户":
                         userdata.UserPermission = 1;
                         break;
+
                     case "管理员":
                         userdata.UserPermission = 2;
                         break;
                 }
 
-                if(OptionType==1)
+                if (OptionType == 1)
                 {
                     userdata.CreateDateTime = DateTime.Now;
                     userdata.FailureDateTime = DateTime.Now;
@@ -158,21 +161,27 @@ namespace ServiceManual
                     case "不修改":
                         userdata.FailureDateTime = userdata.FailureDateTime;
                         break;
+
                     case "一个月":
                         userdata.FailureDateTime = userdata.FailureDateTime.AddMonths(1);
                         break;
+
                     case "三个月":
                         userdata.FailureDateTime = userdata.FailureDateTime.AddMonths(3);
                         break;
+
                     case "六个月":
                         userdata.FailureDateTime = userdata.FailureDateTime.AddMonths(6);
                         break;
+
                     case "一年":
                         userdata.FailureDateTime = userdata.FailureDateTime.AddYears(1);
                         break;
+
                     case "两年":
                         userdata.FailureDateTime = userdata.FailureDateTime.AddYears(2);
                         break;
+
                     case "三年":
                         userdata.FailureDateTime = userdata.FailureDateTime.AddYears(3);
                         break;
@@ -188,10 +197,15 @@ namespace ServiceManual
                         case "在线":
                             userdata.IsOnline = true;
                             break;
+
                         case "下线":
                             userdata.IsOnline = false;
                             break;
                     }
+                }
+                if (string.IsNullOrEmpty(comCheckBoxList1.tbSelectText))
+                {
+                    userdata.FilePermission = comCheckBoxList1.tbSelectText;
                 }
                 DialogResult = DialogResult.OK;
             }
@@ -221,7 +235,5 @@ namespace ServiceManual
             }
             return ret;
         }
-
-
     }
 }
