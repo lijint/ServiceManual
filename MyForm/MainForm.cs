@@ -34,6 +34,7 @@ namespace ServiceManual
         public MainForm(LoginForm father)
         {
             InitializeComponent();
+            this.Text = Global.MainFormTitle != null ? Global.MainFormTitle : "维修秘籍";
             myFather = father;
             InitContrl();
             this.WindowState = FormWindowState.Maximized;
@@ -97,95 +98,6 @@ namespace ServiceManual
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            try
-            {
-                //MyPanel.Controls.Clear();
-                DoLogout_d d = new DoLogout_d(DoLogout);
-                d.BeginInvoke(new AsyncCallback(Closeingcall), null);
-                this.Hide();
-            }
-            catch (Exception ex)
-            {
-                Log.Error("[" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + System.Reflection.MethodBase.GetCurrentMethod().Name + "] err" + ex);
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void BtnUpdateFile_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                ClearAllControl();
-                CheckFileUpdate();
-                if (IsNeedUpdateFile)
-                {
-                    BeingUpdateFile updateForm = new BeingUpdateFile(fileSys);
-                    DialogResult dr = updateForm.ShowDialog();
-                    //int res = fileSys.DoUpdateFileList();
-                    if (dr != DialogResult.Yes)
-                        throw new Exception("文件未更新完成，请再次操作");
-                    while (tv.Nodes.Count > 1)
-                        tv.Nodes[tv.Nodes.Count - 1].Remove();
-                    LocalFileList.Clear();
-                    GetNodeValue(Global.SysFilePath, tv.Nodes);
-                    MessageBox.Show("更新完成");
-                }
-                else
-                    MessageBox.Show("当前文件无需更新！");
-            }
-            catch (Exception ex)
-            {
-                Log.Error("[" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + System.Reflection.MethodBase.GetCurrentMethod().Name + "] err" + ex);
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void btnMyInfo_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                MyInfoForm myInfoForm = new MyInfoForm();
-                DialogResult ret = myInfoForm.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                Log.Error("[" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + System.Reflection.MethodBase.GetCurrentMethod().Name + "] err" + ex);
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void btnPay_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                PayForm payform = new PayForm();
-                payform.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                Log.Error("[" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + System.Reflection.MethodBase.GetCurrentMethod().Name + "] err" + ex);
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                DoLogout_d d = new DoLogout_d(DoLogout);
-                d.BeginInvoke(new AsyncCallback(Logoutcall), null);
-                Hide();
-            }
-            catch (Exception ex)
-            {
-                Log.Error("[" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + System.Reflection.MethodBase.GetCurrentMethod().Name + "] err" + ex);
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         private void Logoutcall(IAsyncResult ar)
         {
             myFather.Show();
@@ -193,7 +105,7 @@ namespace ServiceManual
         }
 
         //方法需传入绝对路径，以及Treeview的Name的Nodes属性
-        private void GetNodeValue(string path, TreeNodeCollection tc)
+        private void GetNodeValue(string path, TreeNodeCollection tc, bool IsFirst = true)
         {
             try
             {
@@ -208,6 +120,13 @@ namespace ServiceManual
                     filename = Path.GetFileNameWithoutExtension(FilePath[i]);
                     if (filename == "temp")
                         continue;
+                    if (IsFirst)
+                    {
+                        if (!Global.userMsgData.FilePermission.Contains(filename))
+                        {
+                            continue;
+                        }
+                    }
                     TreeNode tn = new TreeNode
                     {
                         Text = filename,
@@ -217,8 +136,9 @@ namespace ServiceManual
                     };
                     //在treeview节点下存下每个节点的路径
                     tc.Add(tn);
+                    //if()
                     //这里遇到了递归，遇到文件夹，先进入文件夹里面去遍历，将大的tr，替换为小的tr
-                    GetNodeValue(FilePath[i], tn.Nodes);
+                    GetNodeValue(FilePath[i], tn.Nodes, false);
                 }
                 //因为目录名不能被点击，获得目录下的文件
                 //获得文件夹下文件的名字，
@@ -502,34 +422,10 @@ namespace ServiceManual
             else
                 throw new Exception("localList or acceptList is null");
         }
-        private void btnChangePsd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                ChangePsdForm changePsdForm = new ChangePsdForm();
-                DialogResult ret = changePsdForm.ShowDialog();
-                if (ret == DialogResult.OK)
-                {
-                    MessageBox.Show("修改成功");
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error("[" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + System.Reflection.MethodBase.GetCurrentMethod().Name + "] err" + ex);
-                MessageBox.Show(ex.Message);
-            }
-
-        }
         private void InitContrl()
         {
             try
             {
-                //pdfControl = new PDFControl
-                //{
-                //    Width = MyPanel.Width,
-                //    Height = MyPanel.Height,
-                //    Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right
-                //};
                 webBrowserControl = new WebBrowserControl();
                 txtControl = new TxtControl();
                 picControl = new PictureControl();
@@ -543,37 +439,6 @@ namespace ServiceManual
                 NewControl<PDFFoxControl>(ref pdfFoxControl);
                 NewControl<PCBControl>(ref pcbControl);
                 NewControl<WebControl>(ref webControl);
-
-                //txtControl = new TxtControl
-                //{
-                //    Width = MyPanel.Width,
-                //    Height = MyPanel.Height,
-                //    Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right
-                //};
-                //picControl = new PictureControl
-                //{
-                //    Width = MyPanel.Width,
-                //    Height = MyPanel.Height,
-                //    Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right
-                //};
-                //pdfFoxControl = new PDFFoxControl
-                //{
-                //    Width = MyPanel.Width,
-                //    Height = MyPanel.Height,
-                //    Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right
-                //};
-                //pcbControl = new PCBControl
-                //{
-                //    Width = MyPanel.Width,
-                //    Height = MyPanel.Height,
-                //    Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right
-                //};
-                //webControl = new WebControl
-                //{
-                //    Width = MyPanel.Width,
-                //    Height = MyPanel.Height,
-                //    Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right
-                //};
 
                 IsPicOrTxt(false);
             }
@@ -660,23 +525,6 @@ namespace ServiceManual
                 BtnCut.Hide();
             }
         }
-
-        private void BtnPlus_Click(object sender, EventArgs e)
-        {
-            if (this.MyPanel.Controls[0] == picControl)
-            {
-                picControl.btnPicAdd_Click();
-            }
-        }
-
-        private void BtnCut_Click(object sender, EventArgs e)
-        {
-            if (this.MyPanel.Controls[0] == picControl)
-            {
-                picControl.btnPicCut_Click();
-            }
-        }
-
         private void DisplaySreachResFileList(List<CommonData.MainFormFile> filelist)
         {
             try
@@ -769,73 +617,6 @@ namespace ServiceManual
             }
             return res;
         }
-
-        private void MainForm_SizeChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                //pdfControl.Width = MyPanel.Width;
-                //pdfControl.Height = MyPanel.Height;
-                //pdfControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right;
-                pdfFoxControl.Width = MyPanel.Width;
-                pdfFoxControl.Height = MyPanel.Height;
-                pdfFoxControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right;
-                webBrowserControl.Width = MyPanel.Width;
-                webBrowserControl.Height = MyPanel.Height;
-                webBrowserControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right;
-                txtControl.Width = MyPanel.Width;
-                txtControl.Height = MyPanel.Height;
-                txtControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right;
-                picControl.Width = MyPanel.Width;
-                picControl.Height = MyPanel.Height;
-                picControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right;
-                pcbControl.Width = MyPanel.Width;
-                pcbControl.Height = MyPanel.Height;
-                pcbControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right;
-                webControl.Width = MyPanel.Width;
-                webControl.Height = MyPanel.Height;
-                webControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right;
-            }
-            catch (Exception ex)
-            {
-                Log.Error("[" + MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + MethodBase.GetCurrentMethod().Name + "] Error  " + ex.Message);
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void btnSreach_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string txtStr = textBox1.Text;
-                if (!string.IsNullOrEmpty(txtStr))
-                {
-                    SreachResFileList.Clear();
-                    int res = SreachFile(LocalFileList, out SreachResFileList, textBox1.Text);
-                    if (res == 0)
-                    {
-                        DisplaySreachResFileList(SreachResFileList);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error("[" + MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + MethodBase.GetCurrentMethod().Name + "] Error  " + ex.Message);
-            }
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(textBox1.Text))
-            {
-                while (tv.Nodes.Count > 1)
-                    tv.Nodes[tv.Nodes.Count - 1].Remove();
-                LocalFileList.Clear();
-                GetNodeValue(Global.SysFilePath, tv.Nodes);
-                return;
-            }
-        }
-
         private void ShowAdd()
         {
             try
@@ -856,13 +637,6 @@ namespace ServiceManual
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void btnChangeSkin_Click(object sender, EventArgs e)
-        {
-            //ChangeSkin changeSkin = new ChangeSkin();
-            //changeSkin.ShowDialog();
-        }
-
         private void GetConfigInfo()
         {
             string resmsg;
@@ -975,6 +749,203 @@ namespace ServiceManual
             btnMine.Enabled = !flag;
             btnSreach.Enabled = !flag;
         }
+        #region Event
+        private void btnPay_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PayForm payform = new PayForm();
+                payform.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("[" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + System.Reflection.MethodBase.GetCurrentMethod().Name + "] err" + ex);
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DoLogout_d d = new DoLogout_d(DoLogout);
+                d.BeginInvoke(new AsyncCallback(Logoutcall), null);
+                Hide();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("[" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + System.Reflection.MethodBase.GetCurrentMethod().Name + "] err" + ex);
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                //MyPanel.Controls.Clear();
+                DoLogout_d d = new DoLogout_d(DoLogout);
+                d.BeginInvoke(new AsyncCallback(Closeingcall), null);
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("[" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + System.Reflection.MethodBase.GetCurrentMethod().Name + "] err" + ex);
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void BtnUpdateFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ClearAllControl();
+                CheckFileUpdate();
+                if (IsNeedUpdateFile)
+                {
+                    BeingUpdateFile updateForm = new BeingUpdateFile(fileSys);
+                    DialogResult dr = updateForm.ShowDialog();
+                    //int res = fileSys.DoUpdateFileList();
+                    if (dr != DialogResult.Yes)
+                        throw new Exception("文件未更新完成，请再次操作");
+                    while (tv.Nodes.Count > 1)
+                        tv.Nodes[tv.Nodes.Count - 1].Remove();
+                    LocalFileList.Clear();
+                    GetNodeValue(Global.SysFilePath, tv.Nodes);
+                    MessageBox.Show("更新完成");
+                }
+                else
+                    MessageBox.Show("当前文件无需更新！");
+            }
+            catch (Exception ex)
+            {
+                Log.Error("[" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + System.Reflection.MethodBase.GetCurrentMethod().Name + "] err" + ex);
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnMyInfo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MyInfoForm myInfoForm = new MyInfoForm();
+                DialogResult ret = myInfoForm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("[" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + System.Reflection.MethodBase.GetCurrentMethod().Name + "] err" + ex);
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnChangePsd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ChangePsdForm changePsdForm = new ChangePsdForm();
+                DialogResult ret = changePsdForm.ShowDialog();
+                if (ret == DialogResult.OK)
+                {
+                    MessageBox.Show("修改成功");
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error("[" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + System.Reflection.MethodBase.GetCurrentMethod().Name + "] err" + ex);
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void BtnPlus_Click(object sender, EventArgs e)
+        {
+            if (this.MyPanel.Controls[0] == picControl)
+            {
+                picControl.btnPicAdd_Click();
+            }
+        }
+
+        private void BtnCut_Click(object sender, EventArgs e)
+        {
+            if (this.MyPanel.Controls[0] == picControl)
+            {
+                picControl.btnPicCut_Click();
+            }
+        }
+
+        private void MainForm_SizeChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //pdfControl.Width = MyPanel.Width;
+                //pdfControl.Height = MyPanel.Height;
+                //pdfControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right;
+                pdfFoxControl.Width = MyPanel.Width;
+                pdfFoxControl.Height = MyPanel.Height;
+                pdfFoxControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right;
+                webBrowserControl.Width = MyPanel.Width;
+                webBrowserControl.Height = MyPanel.Height;
+                webBrowserControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right;
+                txtControl.Width = MyPanel.Width;
+                txtControl.Height = MyPanel.Height;
+                txtControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right;
+                picControl.Width = MyPanel.Width;
+                picControl.Height = MyPanel.Height;
+                picControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right;
+                pcbControl.Width = MyPanel.Width;
+                pcbControl.Height = MyPanel.Height;
+                pcbControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right;
+                webControl.Width = MyPanel.Width;
+                webControl.Height = MyPanel.Height;
+                webControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("[" + MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + MethodBase.GetCurrentMethod().Name + "] Error  " + ex.Message);
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnSreach_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string txtStr = textBox1.Text;
+                if (!string.IsNullOrEmpty(txtStr))
+                {
+                    SreachResFileList.Clear();
+                    int res = SreachFile(LocalFileList, out SreachResFileList, textBox1.Text);
+                    if (res == 0)
+                    {
+                        DisplaySreachResFileList(SreachResFileList);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error("[" + MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + MethodBase.GetCurrentMethod().Name + "] Error  " + ex.Message);
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBox1.Text))
+            {
+                while (tv.Nodes.Count > 1)
+                    tv.Nodes[tv.Nodes.Count - 1].Remove();
+                LocalFileList.Clear();
+                GetNodeValue(Global.SysFilePath, tv.Nodes);
+                return;
+            }
+        }
+
+        private void btnChangeSkin_Click(object sender, EventArgs e)
+        {
+            //ChangeSkin changeSkin = new ChangeSkin();
+            //changeSkin.ShowDialog();
+        }
+
+        #endregion
 
     }
 }

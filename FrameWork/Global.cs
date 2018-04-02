@@ -54,6 +54,9 @@ namespace ServiceManual
             set { accessFactory.SetPramToDB("LoginUserPsw", value); }
         }
 
+        public static string MainFormTitle = "维修秘籍 " + Vesion;
+        public const string Vesion = "V1.2";
+
         public static Dictionary<ConfigInfo, string> ConfigInfoList = new Dictionary<ConfigInfo, string>();
 
         public enum ConfigInfo

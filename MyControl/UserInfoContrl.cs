@@ -104,6 +104,7 @@ namespace ServiceManual
                     }
                     lvi.SubItems.Add(user.IsOnline ? "在线" : "不在线");
                     lvi.SubItems.Add(user.StateCode ? "启用" : "禁用");
+                    lvi.SubItems.Add(user.FilePermission);
                     lvUserList.Items.Add(lvi);
                 }
                 lvUserList.EndUpdate();  //结束数据处理，UI界面一次性绘制。  

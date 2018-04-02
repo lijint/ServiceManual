@@ -77,6 +77,8 @@ namespace ServiceManual
                     }
                     cbUserStatus.SelectedItem = userdata.StateCode ? "启用" : "禁用";
                     cbIsOnline.SelectedItem = userdata.IsOnline ? "在线" : "下线";
+
+                    comCheckBoxList1.tbSelectText = userdata.FilePermission;
                 }
             }
             catch (Exception ex)
@@ -90,7 +92,7 @@ namespace ServiceManual
         {
             try
             {
-                if (string.IsNullOrEmpty(tbAccount.Text) || string.IsNullOrEmpty(cbUserPermission.Text) || string.IsNullOrEmpty(cbUserTime.Text))
+                if (string.IsNullOrEmpty(tbAccount.Text) || string.IsNullOrEmpty(cbUserPermission.Text) || string.IsNullOrEmpty(cbUserTime.Text)||string.IsNullOrEmpty(comCheckBoxList1.tbSelectText))
                 {
                     throw new Exception("所填值不允许为空");
                 }
@@ -203,7 +205,7 @@ namespace ServiceManual
                             break;
                     }
                 }
-                if (string.IsNullOrEmpty(comCheckBoxList1.tbSelectText))
+                if (!string.IsNullOrEmpty(comCheckBoxList1.tbSelectText))
                 {
                     userdata.FilePermission = comCheckBoxList1.tbSelectText;
                 }

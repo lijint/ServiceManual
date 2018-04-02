@@ -41,12 +41,13 @@
             this.IsOnline = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.StateCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnDelUser = new System.Windows.Forms.Button();
+            this.FilePermission = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // btnModifyUser
             // 
             this.btnModifyUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModifyUser.Location = new System.Drawing.Point(897, 4);
+            this.btnModifyUser.Location = new System.Drawing.Point(1052, 4);
             this.btnModifyUser.Name = "btnModifyUser";
             this.btnModifyUser.Size = new System.Drawing.Size(75, 23);
             this.btnModifyUser.TabIndex = 8;
@@ -57,7 +58,7 @@
             // btnAddUser
             // 
             this.btnAddUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddUser.Location = new System.Drawing.Point(793, 4);
+            this.btnAddUser.Location = new System.Drawing.Point(948, 4);
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(75, 23);
             this.btnAddUser.TabIndex = 7;
@@ -79,11 +80,12 @@
             this.UserTel,
             this.UserPermission,
             this.IsOnline,
-            this.StateCode});
+            this.StateCode,
+            this.FilePermission});
             this.lvUserList.Font = new System.Drawing.Font("幼圆", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lvUserList.Location = new System.Drawing.Point(6, 33);
             this.lvUserList.Name = "lvUserList";
-            this.lvUserList.Size = new System.Drawing.Size(1146, 639);
+            this.lvUserList.Size = new System.Drawing.Size(1301, 639);
             this.lvUserList.TabIndex = 6;
             this.lvUserList.UseCompatibleStateImageBehavior = false;
             this.lvUserList.View = System.Windows.Forms.View.Details;
@@ -145,13 +147,18 @@
             // btnDelUser
             // 
             this.btnDelUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelUser.Location = new System.Drawing.Point(1004, 4);
+            this.btnDelUser.Location = new System.Drawing.Point(1159, 4);
             this.btnDelUser.Name = "btnDelUser";
             this.btnDelUser.Size = new System.Drawing.Size(75, 23);
             this.btnDelUser.TabIndex = 9;
             this.btnDelUser.Text = "删除用户";
             this.btnDelUser.UseVisualStyleBackColor = true;
             this.btnDelUser.Click += new System.EventHandler(this.btnDelUser_Click);
+            // 
+            // FilePermission
+            // 
+            this.FilePermission.Text = "文件权限";
+            this.FilePermission.Width = 200;
             // 
             // UserInfoContrl
             // 
@@ -162,7 +169,7 @@
             this.Controls.Add(this.btnAddUser);
             this.Controls.Add(this.lvUserList);
             this.Name = "UserInfoContrl";
-            this.Size = new System.Drawing.Size(1158, 676);
+            this.Size = new System.Drawing.Size(1313, 676);
             this.Load += new System.EventHandler(this.UserInfoContrl_Load);
             this.ResumeLayout(false);
 
@@ -183,5 +190,6 @@
         private System.Windows.Forms.ColumnHeader IsOnline;
         private System.Windows.Forms.ColumnHeader StateCode;
         private System.Windows.Forms.Button btnDelUser;
+        private System.Windows.Forms.ColumnHeader FilePermission;
     }
 }

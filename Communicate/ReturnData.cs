@@ -16,6 +16,29 @@ namespace ServiceManual
         public static int DoCheckPsw(string account, string passWord, out string retmsg,out int StateCodeID)
         {
             int res = -1;
+//#if DEBUG
+//            if (account == "1")
+//            {
+//                res = 0;
+//                StateCodeID = 0;
+//                Global.userMsgData.UserPermission = int.Parse(account);
+//                retmsg = "调试状态，普通用户账号！";
+//            }
+//            else if (account == "2")
+//            {
+//                res = 0;
+//                StateCodeID = 0;
+//                Global.userMsgData.UserPermission = int.Parse(account);
+//                retmsg = "调试状态，管理员账号！";
+//            }
+//            else
+//            {
+//                retmsg = "调试状态，无此账号！";
+//                StateCodeID = -1;
+//            }
+//            return res;
+
+//#endif
             try
             {
                 StateCodeID = -1;
@@ -25,7 +48,6 @@ namespace ServiceManual
                 StateCodeID = retres.StateCodeID;
                 if (retres.IsOK)
                 {
-                    Global.userMsgData.Account = account;
                     try
                     {
                         Global.userMsgData.UserPermission = int.Parse(retres.ExtData);
@@ -454,6 +476,16 @@ namespace ServiceManual
         public static int DoGetConfiginfo(out Dictionary<Global.ConfigInfo, string> configlist, out string retmsg)
         {
             int res = -1;
+//#if DEBUG
+//            configlist = new Dictionary<Global.ConfigInfo, string>();
+//            configlist.Add(Global.ConfigInfo.FtpPath, "39.108.188.162");
+//            configlist.Add(Global.ConfigInfo.InitAddr, "");
+//            configlist.Add(Global.ConfigInfo.WebAddAddr, "www.baidu.com");
+//            configlist.Add(Global.ConfigInfo.YeMeiMsg, "维修秘籍");
+//            retmsg = "调试状态，获取客户端参数配置返回成功！";
+//            res = 0;
+//            return res;
+//#endif
             try
             {
                 WRAliPay.AliPayWebService ws = new WRAliPay.AliPayWebService();

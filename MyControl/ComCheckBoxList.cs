@@ -32,6 +32,7 @@ namespace ServiceManual
         public ComCheckBoxList()
         {
             InitializeComponent();
+            this.ResumeLayout(false);
             this.Name = "comBoxCheckBoxList";
             this.Layout += new LayoutEventHandler(ComCheckBoxList_Layout);
 
@@ -41,6 +42,8 @@ namespace ServiceManual
             tbSelectedValue.BorderStyle = BorderStyle.None;
             tbSelectedValue.Click += new EventHandler(btnSelect_Click);
             tbSelectedValue.ReadOnly = true;
+            tbSelectedValue.AutoSize = false;
+            tbSelectedValue.Height = 20;
 
             //下拉箭头
             this.btnSelect = new ButtonS();
@@ -74,7 +77,7 @@ namespace ServiceManual
             checkListBox.CheckOnClick = true;
             checkListBox.ScrollAlwaysVisible = true;
             checkListBox.LostFocus += new EventHandler(checkListBox_LostFocus);
-            checkListBox.ItemCheck += new ItemCheckEventHandler(checkListBox_ItemCheck);
+            checkListBox.MouseUp += new MouseEventHandler(checkListBox_MouseUp);
 
             //窗体
             frmCheckList = new Form();
@@ -115,8 +118,8 @@ namespace ServiceManual
             pnlCheck.Controls.Add(lbSelectNo);
             pnlCheck.Controls.Add(lbGrip);
             this.frmCheckList.Controls.Add(pnlCheck);
-        }
 
+        }
         /// <summary>
         /// 设置数据源
         /// </summary>
@@ -199,6 +202,7 @@ namespace ServiceManual
         public string tbSelectText
         {
             get { return tbSelectedValue.Text; }
+            set { tbSelectedValue.Text = value; }
         }
 
         private void SetTbValue()
@@ -223,9 +227,24 @@ namespace ServiceManual
 
         #region 事件
 
-        private void checkListBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        private void checkListBox_MouseUp(object sender, MouseEventArgs e)
         {
-            //SetTbValue();
+            SetTbValue();
+        }
+
+        public void SetInitCheck()
+        {
+            if (!string.IsNullOrEmpty(tbSelectedValue.Text))
+            {
+                string tbtext = tbSelectedValue.Text;
+                for (int i = 0; i < this.checkListBox.Items.Count; i++)
+                {
+                    if (tbtext.Contains(this.checkListBox.Items[i].ToString()))
+                    {
+                        this.checkListBox.SetItemChecked(i, true);
+                    }
+                }
+            }
         }
 
         //布局
@@ -266,7 +285,7 @@ namespace ServiceManual
                 this.frmCheckList.Location = new Point(rec.X, rec.Y + this.pnlBack.Height);
                 this.frmCheckList.Show();
                 this.frmCheckList.BringToFront();
-
+                SetInitCheck();
                 ReloationGrip();
             }
             else
@@ -279,7 +298,7 @@ namespace ServiceManual
             if (!this.btnSelect.RectangleToScreen(this.btnSelect.ClientRectangle).Contains(Cursor.Position))
             {
                 frmCheckList.Hide();
-                SetTbValue();
+                //SetTbValue();
             }
         }
 
@@ -364,6 +383,7 @@ namespace ServiceManual
         }
 
         #endregion 事件
+
     }
 
     /// <summary>

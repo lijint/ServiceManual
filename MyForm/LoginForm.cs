@@ -159,6 +159,7 @@ namespace ServiceManual
                 if (res == 0)
                 {
                     Global.LoginUserID = StrAccount;
+                    Global.userMsgData.Account = StrAccount;
                     if (checkBox2.Checked)
                     {
                         Global.LoginUserPsw = StrPsd;

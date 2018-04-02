@@ -54,6 +54,7 @@
             this.lbps = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.comCheckBoxList1 = new ServiceManual.ComCheckBoxList();
+            this.label12 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -68,7 +69,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(31, 84);
+            this.label2.Location = new System.Drawing.Point(31, 90);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 12);
             this.label2.TabIndex = 1;
@@ -289,8 +290,18 @@
             this.comCheckBoxList1.DataSource = null;
             this.comCheckBoxList1.Location = new System.Drawing.Point(114, 223);
             this.comCheckBoxList1.Name = "comCheckBoxList1";
-            this.comCheckBoxList1.Size = new System.Drawing.Size(300, 20);
+            this.comCheckBoxList1.Size = new System.Drawing.Size(300, 26);
             this.comCheckBoxList1.TabIndex = 15;
+            this.comCheckBoxList1.tbSelectText = "";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(46, 223);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(53, 12);
+            this.label12.TabIndex = 9;
+            this.label12.Text = "文件权限";
             // 
             // ManageUserForm
             // 
@@ -303,6 +314,7 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cbIsOnline);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cbUserStatus);
             this.Controls.Add(this.cbUserPermission);
@@ -359,5 +371,6 @@
         private System.Windows.Forms.Label lbps;
         private System.Windows.Forms.Label label13;
         private ComCheckBoxList comCheckBoxList1;
+        private System.Windows.Forms.Label label12;
     }
 }
