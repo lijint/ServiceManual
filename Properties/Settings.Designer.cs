@@ -12,7 +12,7 @@ namespace ServiceManual.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -26,7 +26,7 @@ namespace ServiceManual.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://172.20.8.24/DownLoad/BLL/Login/LoginWebService.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://39.108.188.162/DownLoad/BLL/Login/LoginWebService.asmx")]
         public string ServiceManual_WRLogin_LoginWebService {
             get {
                 return ((string)(this["ServiceManual_WRLogin_LoginWebService"]));
@@ -36,7 +36,7 @@ namespace ServiceManual.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://172.20.8.24/DownLoad/BLL/UpdateFile/UpdateFileWebService.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://39.108.188.162/DownLoad/BLL/UpdateFile/UpdateFileWebService.asmx")]
         public string ServiceManual_WRFileUpdate_UpdateFileWebService {
             get {
                 return ((string)(this["ServiceManual_WRFileUpdate_UpdateFileWebService"]));
