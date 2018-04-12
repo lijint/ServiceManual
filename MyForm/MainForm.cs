@@ -15,9 +15,11 @@ namespace ServiceManual
 {
     public partial class MainForm : Form
     {
-        LoginForm myFather;
+        private LoginForm myFather;
+
         //private PDFControl pdfControl;
         private WebBrowserControl webBrowserControl;
+
         private TxtControl txtControl;
         private PictureControl picControl;
         private PDFFoxControl pdfFoxControl;
@@ -25,7 +27,9 @@ namespace ServiceManual
         private WebControl webControl;
 
         public delegate void DoLogout_d();
+
         public delegate void ShowFile(TreeViewEventArgs e);
+
         public FileSystem fileSys;
         private bool IsNeedUpdateFile = false;   //true need   false noneed
         private List<CommonData.MainFormFile> LocalFileList;
@@ -41,6 +45,7 @@ namespace ServiceManual
             {
                 if (MessageBox.Show("加载控件出错，退出程序！") == DialogResult.OK)
                 {
+                    ClearAllControl();
                     DoLogout_d d = new DoLogout_d(DoLogout);
                     d.BeginInvoke(new AsyncCallback(Logoutcall), null);
                     Hide();
@@ -78,7 +83,6 @@ namespace ServiceManual
                 LocalFileList.Clear();
                 GetNodeValue(Global.SysFilePath, tv.Nodes);
                 initFrom();
-
             }
             catch (Exception ex)
             {
@@ -99,7 +103,6 @@ namespace ServiceManual
                 LocalFileList = new List<CommonData.MainFormFile>();
                 SreachResFileList = new List<CommonData.MainFormFile>();
                 InitFileSys();
-
             }
             catch (Exception ex)
             {
@@ -107,6 +110,7 @@ namespace ServiceManual
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void Logoutcall(IAsyncResult ar)
         {
             myFather.Show();
@@ -175,30 +179,35 @@ namespace ServiceManual
                                 tn.SelectedImageIndex = IconIndexes.PDFFile;
                             }
                             break;
+
                         case CommonData.FileType.Video:
                             {
                                 tn.ImageIndex = IconIndexes.VideoFile;
                                 tn.SelectedImageIndex = IconIndexes.VideoFile;
                             }
                             break;
+
                         case CommonData.FileType.TXT:
                             {
                                 tn.ImageIndex = IconIndexes.TXTFile;
                                 tn.SelectedImageIndex = IconIndexes.TXTFile;
                             }
                             break;
+
                         case CommonData.FileType.Image:
                             {
                                 tn.ImageIndex = IconIndexes.PicFile;
                                 tn.SelectedImageIndex = IconIndexes.PicFile;
                             }
                             break;
+
                         case CommonData.FileType.PCB:
                             {
                                 tn.ImageIndex = IconIndexes.PCBFile;
                                 tn.SelectedImageIndex = IconIndexes.PCBFile;
                             }
                             break;
+
                         case CommonData.FileType.Web:
                             {
                                 tn.ImageIndex = IconIndexes.WebFile;
@@ -246,7 +255,6 @@ namespace ServiceManual
                     {
                         case CommonData.FileType.Pdf:
                             {
-
                                 //pdfControl.DisplayPDFFile(filepath);
                                 pdfFoxControl.DisplayPDFFile(filepath);
                                 MyPanel.Controls.Clear();
@@ -254,6 +262,7 @@ namespace ServiceManual
                                 IsPicOrTxt(false);
                             }
                             break;
+
                         case CommonData.FileType.Video:
                             {
                                 //INIClass ini = new INIClass(fullPath + ".temp");
@@ -272,6 +281,7 @@ namespace ServiceManual
                                 }
                             }
                             break;
+
                         case CommonData.FileType.TXT:
                             {
                                 //txtControl.DisplayTxt(fullPath + ".temp");
@@ -281,6 +291,7 @@ namespace ServiceManual
                                 IsPicOrTxt(false);
                             }
                             break;
+
                         case CommonData.FileType.Image:
                             {
                                 picControl.SetPicPath(filepath);
@@ -289,15 +300,16 @@ namespace ServiceManual
                                 IsPicOrTxt(true);
                             }
                             break;
+
                         case CommonData.FileType.PCB:
                             {
-
                                 pcbControl.ShowPcb(filepath);
                                 MyPanel.Controls.Clear();
                                 MyPanel.Controls.Add(pcbControl);
                                 IsPicOrTxt(false);
                             }
                             break;
+
                         case CommonData.FileType.Web:
                             {
                                 INIClass ini = new INIClass(filepath);
@@ -317,7 +329,6 @@ namespace ServiceManual
                 MessageBox.Show(ex.Message);
             }
         }
-
 
         private void InitFileSys()
         {
@@ -376,12 +387,10 @@ namespace ServiceManual
                 {
                     reg.DeleteValue(applicationname, false);
                 }
-
             }
             catch (System.Exception ex)
             {
                 Log.Error("[" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + System.Reflection.MethodBase.GetCurrentMethod().Name + "] err" + ex);
-
             }
             finally
             {
@@ -397,7 +406,6 @@ namespace ServiceManual
             {
                 int res = ReturnData.DoLogout(Global.userMsgData.Account, out retMsg);
                 FileSystem fs = new FileSystem();
-                ClearAllControl();
                 fs.DelAllTempFile(Global.SysFilePath);
                 if (res != 0)
                     throw new Exception(retMsg);
@@ -431,6 +439,7 @@ namespace ServiceManual
             else
                 throw new Exception("localList or acceptList is null");
         }
+
         private int InitContrl()
         {
             try
@@ -476,23 +485,29 @@ namespace ServiceManual
                     case "pdf":
                         fileType = CommonData.FileType.Pdf;
                         break;
+
                     case "txt":
                         fileType = CommonData.FileType.TXT;
                         break;
+
                     case "ini":
                         fileType = CommonData.FileType.Video;
                         break;
+
                     case "jpg":
                     case "bmp":
                     case "png":
                         fileType = CommonData.FileType.Image;
                         break;
+
                     case "pcb":
                         fileType = CommonData.FileType.PCB;
                         break;
+
                     case "webini":
                         fileType = CommonData.FileType.Web;
                         break;
+
                     default:
                         fileType = CommonData.FileType.None;
                         break;
@@ -512,6 +527,7 @@ namespace ServiceManual
             {
                 picControl.ClearPic();
                 pdfFoxControl.ClearPdf();
+                webBrowserControl.ClearVideo();
             }
             catch
             {
@@ -535,6 +551,7 @@ namespace ServiceManual
                 BtnCut.Hide();
             }
         }
+
         private void DisplaySreachResFileList(List<CommonData.MainFormFile> filelist)
         {
             try
@@ -558,24 +575,28 @@ namespace ServiceManual
                                     tn.SelectedImageIndex = IconIndexes.PDFFile;
                                 }
                                 break;
+
                             case CommonData.FileType.Video:
                                 {
                                     tn.ImageIndex = IconIndexes.VideoFile;
                                     tn.SelectedImageIndex = IconIndexes.VideoFile;
                                 }
                                 break;
+
                             case CommonData.FileType.TXT:
                                 {
                                     tn.ImageIndex = IconIndexes.TXTFile;
                                     tn.SelectedImageIndex = IconIndexes.TXTFile;
                                 }
                                 break;
+
                             case CommonData.FileType.Image:
                                 {
                                     tn.ImageIndex = IconIndexes.PicFile;
                                     tn.SelectedImageIndex = IconIndexes.PicFile;
                                 }
                                 break;
+
                             case CommonData.FileType.PCB:
                                 {
                                     tn.ImageIndex = IconIndexes.PCBFile;
@@ -627,6 +648,7 @@ namespace ServiceManual
             }
             return res;
         }
+
         private void ShowAdd()
         {
             try
@@ -647,6 +669,7 @@ namespace ServiceManual
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void GetConfigInfo()
         {
             string resmsg;
@@ -676,7 +699,7 @@ namespace ServiceManual
                 string fullpath = Application.StartupPath + "\\" + initFilePath.Substring(initFilePath.IndexOf("File"));
                 string tempstr = Path.GetFileNameWithoutExtension(initFilePath);
                 string filenameExtension = tempstr.Substring(tempstr.IndexOf('.') + 1);
-                initFilePath = fullpath.Substring(0, fullpath.LastIndexOf("."))+".temp";
+                initFilePath = fullpath.Substring(0, fullpath.LastIndexOf(".")) + ".temp";
                 TreeNode tn = new TreeNode();
                 //取出文件拓展名
                 //string filenameExtension = Path.GetFileNameWithoutExtension(initFilePath).Substring(initFilePath.IndexOf('.') + 1);
@@ -685,7 +708,6 @@ namespace ServiceManual
                 {
                     case CommonData.FileType.Pdf:
                         {
-
                             //pdfControl.DisplayPDFFile(filepath);
                             pdfFoxControl.DisplayPDFFile(initFilePath);
                             MyPanel.Controls.Clear();
@@ -693,6 +715,7 @@ namespace ServiceManual
                             IsPicOrTxt(false);
                         }
                         break;
+
                     case CommonData.FileType.Video:
                         {
                             //INIClass ini = new INIClass(fullPath + ".temp");
@@ -711,6 +734,7 @@ namespace ServiceManual
                             }
                         }
                         break;
+
                     case CommonData.FileType.TXT:
                         {
                             //txtControl.DisplayTxt(fullPath + ".temp");
@@ -720,6 +744,7 @@ namespace ServiceManual
                             IsPicOrTxt(false);
                         }
                         break;
+
                     case CommonData.FileType.Image:
                         {
                             picControl.SetPicPath(initFilePath);
@@ -728,6 +753,7 @@ namespace ServiceManual
                             IsPicOrTxt(true);
                         }
                         break;
+
                     case CommonData.FileType.PCB:
                         {
                             pcbControl.ShowPcb(initFilePath);
@@ -759,7 +785,9 @@ namespace ServiceManual
             btnMine.Enabled = !flag;
             btnSreach.Enabled = !flag;
         }
+
         #region Event
+
         private void btnPay_Click(object sender, EventArgs e)
         {
             try
@@ -778,6 +806,8 @@ namespace ServiceManual
         {
             try
             {
+                ClearAllControl();
+
                 DoLogout_d d = new DoLogout_d(DoLogout);
                 d.BeginInvoke(new AsyncCallback(Logoutcall), null);
                 Hide();
@@ -794,6 +824,8 @@ namespace ServiceManual
             try
             {
                 //MyPanel.Controls.Clear();
+                ClearAllControl();
+
                 DoLogout_d d = new DoLogout_d(DoLogout);
                 d.BeginInvoke(new AsyncCallback(Closeingcall), null);
                 this.Hide();
@@ -864,7 +896,6 @@ namespace ServiceManual
                 Log.Error("[" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + System.Reflection.MethodBase.GetCurrentMethod().Name + "] err" + ex);
                 MessageBox.Show(ex.Message);
             }
-
         }
 
         private void BtnPlus_Click(object sender, EventArgs e)
@@ -955,7 +986,6 @@ namespace ServiceManual
             //changeSkin.ShowDialog();
         }
 
-        #endregion
-
+        #endregion Event
     }
 }

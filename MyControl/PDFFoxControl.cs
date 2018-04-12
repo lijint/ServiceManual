@@ -28,7 +28,7 @@ namespace ServiceManual
             {
                 if (!string.IsNullOrEmpty(pdfpath))
                 {
-                    axFoxitReaderSDK1.OpenFile(pdfpath,"");
+                    axFoxitReaderSDK1.OpenFile(pdfpath, "");
                     SetPdf();
                 }
                 else
@@ -72,7 +72,5 @@ namespace ServiceManual
                 Log.Error("[" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + System.Reflection.MethodBase.GetCurrentMethod().Name + "] err " + ex);
             }
         }
-
-
     }
 }

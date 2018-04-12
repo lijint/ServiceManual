@@ -11,8 +11,8 @@ namespace ServiceManual
 {
     public partial class WebBrowserControl : UserControl
     {
-
         private string VideoValue = string.Empty;
+
         public WebBrowserControl()
         {
             InitializeComponent();
@@ -59,9 +59,7 @@ namespace ServiceManual
                 }
                 return EmValue1 + VideoId + EmValue2;
                 //return @"<embed src='http://player.youku.com/player.php/sid/XMzM3MzUyNDU2NA==/v.swf' allowFullScreen='true' quality='high' width='480' height='400' align='middle' allowScriptAccess='always' type='application/x-shockwave-flash'></embed>";
-
             }
-
         }
 
         private void WebBrowser1_NewWindow(object sender, CancelEventArgs e)
@@ -134,9 +132,15 @@ namespace ServiceManual
 
         public void ClearVideo()
         {
-            if(webBrowser1.Document!=null)  
-                webBrowser1.Document.GetElementById("myiframe").InnerHtml = "";
+            try
+            {
+                if (webBrowser1.Document != null)
+                    webBrowser1.Document.GetElementById("myiframe").InnerHtml = "";
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
-
     }
 }
