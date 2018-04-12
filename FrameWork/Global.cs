@@ -55,7 +55,7 @@ namespace ServiceManual
         }
 
         public static string MainFormTitle = "维修秘籍 " + Vesion;
-        public const string Vesion = "V1.2";
+        public const string Vesion = "V1.2.1";
 
         public static Dictionary<ConfigInfo, string> ConfigInfoList = new Dictionary<ConfigInfo, string>();
 

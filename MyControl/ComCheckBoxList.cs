@@ -14,7 +14,7 @@ namespace ServiceManual
     /// </summary>
     public partial class ComCheckBoxList : UserControl
     {
-        private TextBox tbSelectedValue;
+        private Label tbSelectedValue;
         private ButtonS btnSelect;//下拉箭头
         private LabelS lbGrip;//此LABEL用于设置可以拖动下拉窗体变化
 
@@ -37,13 +37,13 @@ namespace ServiceManual
             this.Layout += new LayoutEventHandler(ComCheckBoxList_Layout);
 
             //生成控件
-            tbSelectedValue = new TextBox();
-            tbSelectedValue.ReadOnly = true;
+            tbSelectedValue = new Label();
             tbSelectedValue.BorderStyle = BorderStyle.None;
             tbSelectedValue.Click += new EventHandler(btnSelect_Click);
-            tbSelectedValue.ReadOnly = true;
+            //tbSelectedValue.ReadOnly = true;
             tbSelectedValue.AutoSize = false;
-            tbSelectedValue.Height = 20;
+            tbSelectedValue.Height = 50;
+            //tbSelectedValue.TextAlign = HorizontalAlignment.Center;
 
             //下拉箭头
             this.btnSelect = new ButtonS();
@@ -207,9 +207,10 @@ namespace ServiceManual
 
         private void SetTbValue()
         {
+            tbSelectedValue.Text = "";
+
             if (this.checkListBox.CheckedItems.Count > 0)
             {
-                tbSelectedValue.Clear();
 
                 for (int i = 0; i < this.checkListBox.CheckedItems.Count; i++)
                 {
