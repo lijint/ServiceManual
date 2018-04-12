@@ -36,7 +36,16 @@ namespace ServiceManual
             InitializeComponent();
             this.Text = Global.MainFormTitle != null ? Global.MainFormTitle : "维修秘籍";
             myFather = father;
-            InitContrl();
+            int ret = InitContrl();
+            if (ret != 0)
+            {
+                if (MessageBox.Show("加载控件出错，退出程序！") == DialogResult.OK)
+                {
+                    DoLogout_d d = new DoLogout_d(DoLogout);
+                    d.BeginInvoke(new AsyncCallback(Logoutcall), null);
+                    Hide();
+                }
+            }
             this.WindowState = FormWindowState.Maximized;
         }
 
@@ -422,7 +431,7 @@ namespace ServiceManual
             else
                 throw new Exception("localList or acceptList is null");
         }
-        private void InitContrl()
+        private int InitContrl()
         {
             try
             {
@@ -441,11 +450,12 @@ namespace ServiceManual
                 NewControl<WebControl>(ref webControl);
 
                 IsPicOrTxt(false);
+                return 0;
             }
             catch (Exception ex)
             {
                 Log.Error("[" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + System.Reflection.MethodBase.GetCurrentMethod().Name + "] err" + ex);
-                MessageBox.Show(ex.Message);
+                return -1;
             }
         }
 

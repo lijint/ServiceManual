@@ -29,27 +29,38 @@ namespace ServiceManual
 
         private string GetEmValue(string invalue)
         {
-            string EmValue1 = "<embed id='myvideo' src='http://player.youku.com/player.php/Type/Folder/Fid//Ob//sid/";
-            string EmValue2 = "==/v.swf' quality='high' width='480' height='400' align='middle' allowScriptAccess='always' allowFullScreen='true' mode='transparent' type='application/x-shockwave-flash'  style='position: absolute;top: -200px;left: -240px;'  wmode='opaque' onmousedown='flashRightClick(event)'></embed>";
-            string VideoId = "";
-            try
+            if (!invalue.Contains("v.youku.com"))
             {
-                //invalue = "http://v.youku.com/v_show/id_XMzI4MDA3MzQ2MA==.html?spm=a2hww.20027244.m_250379.5~1~3~A&f=51426480";
-                int begin = invalue.LastIndexOf("id_");
-                int end = invalue.LastIndexOf("==");
-                if (end < 0)
+                string EmValue1 = "<embed id='myvideo' src='";
+                string EmValue2 = "' quality='high' width='480' height='400' align='middle' allowScriptAccess='always' allowFullScreen='true' mode='transparent' type='application/x-shockwave-flash'  style='position: absolute;top: -200px;left: -240px;'  wmode='opaque' onmousedown='flashRightClick(event)'></embed>";
+
+                return EmValue1 + invalue + EmValue2;
+            }
+            else
+            {
+                string EmValue1 = "<embed id='myvideo' src='http://player.youku.com/player.php/Type/Folder/Fid//Ob//sid/";
+                string EmValue2 = "==/v.swf' quality='high' width='480' height='400' align='middle' allowScriptAccess='always' allowFullScreen='true' mode='transparent' type='application/x-shockwave-flash'  style='position: absolute;top: -200px;left: -240px;'  wmode='opaque' onmousedown='flashRightClick(event)'></embed>";
+                string VideoId = "";
+                try
                 {
-                    end = invalue.LastIndexOf(".html");
+                    //invalue = "http://v.youku.com/v_show/id_XMzI4MDA3MzQ2MA==.html?spm=a2hww.20027244.m_250379.5~1~3~A&f=51426480";
+                    int begin = invalue.LastIndexOf("id_");
+                    int end = invalue.LastIndexOf("==");
+                    if (end < 0)
+                    {
+                        end = invalue.LastIndexOf(".html");
+                    }
+                    VideoId = invalue.Substring(begin + 3, end - begin - 3);
                 }
-                VideoId = invalue.Substring(begin + 3, end - begin - 3);
+                catch
+                {
+                    Log.Error("[" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + System.Reflection.MethodBase.GetCurrentMethod().Name + "] err");
+                    MessageBox.Show("视频地址解析错误");
+                }
+                return EmValue1 + VideoId + EmValue2;
+                //return @"<embed src='http://player.youku.com/player.php/sid/XMzM3MzUyNDU2NA==/v.swf' allowFullScreen='true' quality='high' width='480' height='400' align='middle' allowScriptAccess='always' type='application/x-shockwave-flash'></embed>";
+
             }
-            catch
-            {
-                Log.Error("[" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "][" + System.Reflection.MethodBase.GetCurrentMethod().Name + "] err");
-                MessageBox.Show("视频地址解析错误");
-            }
-            return EmValue1 + VideoId + EmValue2;
-            //return @"<embed src='http://player.youku.com/player.php/sid/XMzM3MzUyNDU2NA==/v.swf' allowFullScreen='true' quality='high' width='480' height='400' align='middle' allowScriptAccess='always' type='application/x-shockwave-flash'></embed>";
 
         }
 

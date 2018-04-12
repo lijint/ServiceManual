@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Reflection;
 namespace ServiceManual
 {
     public class Global
@@ -55,7 +56,7 @@ namespace ServiceManual
         }
 
         public static string MainFormTitle = "维修秘籍 " + Vesion;
-        public const string Vesion = "V1.2.1";
+        public const string Vesion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
         public static Dictionary<ConfigInfo, string> ConfigInfoList = new Dictionary<ConfigInfo, string>();
 
